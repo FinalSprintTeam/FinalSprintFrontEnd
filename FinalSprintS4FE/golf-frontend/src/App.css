@@ -36,3 +36,45 @@
     transform: rotate(360deg);
   }
 }
+
+
+html,
+body,
+#root {
+  height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+
+footer {
+  height: auto;
+  margin-top: auto;
+}
+
+.spaceAdded {
+  margin-bottom: 1.5vw;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  background-color: white;
+}
+
+footer h5 {
+  color: white;
+}
+
+nav h1{
+  z-index: 0;
+  font-family: 'Hanalei Fill', cursive;
+  font-size: 3rem;
+}
