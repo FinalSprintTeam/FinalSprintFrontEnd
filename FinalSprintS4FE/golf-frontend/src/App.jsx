@@ -10,7 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import { getMembers } from "./api/services/members/getMembers";
 
 function App() {
-  const [members, setMembers] = useState("");
+  const [members, setMembers] = useState([]);
 
   useEffect(() => {
     getMemberData();
