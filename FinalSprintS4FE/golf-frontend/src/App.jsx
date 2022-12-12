@@ -38,8 +38,8 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/members" element={<Member />} />
-          <Route path="/tournaments" element={<Tournament />} />
+          <Route path="/members" element={<Member memberData = {members}/>} />
+          <Route path="/tournaments" element={<Tournament tournamentData = {tournaments} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

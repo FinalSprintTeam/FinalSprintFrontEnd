@@ -5,15 +5,37 @@ import Button from '../../UI/Button'
 import classes from '../../UI/Button.module.css'
 import { IoIosAddCircle } from 'react-icons/io'
 import { MdViewList } from 'react-icons/md'
+import { useState } from 'react'
+import styles from "./TournamentItem.module.css"
+import Card from '../../UI/Card'
 
-const Tournament = () => {
+
+
+const Tournament = ({tournamentData}) => {
+    const [showTable, setShowTable] = useState(false);
     const iconAdd = <IoIosAddCircle/>
     const iconView = <MdViewList/>
-    const buttonGroup = <div className={classes.btnContainer}>
+    
+    const onClick = () =>{
+        setShowTable(true);          
+    }
+
+    const tournamentItems = (
+        <ul className={styles["tournament-items"]}>
+            {tournamentData.map((tournament) =>(
+                <li key={tournament.id}>{tournament.name}</li>
+               
+            ))}
+        </ul>
+        
+    )
+
+    const buttonGroup = <div className={classes.btnContainer}> 
     <Button
         label= "Add Tournament"
         style = {classes}
         icon = {iconAdd}
+        handleClick = {onClick}
     />   
     <Button
         label= "View Tournaments"
@@ -29,6 +51,8 @@ const Tournament = () => {
      title = "Tournaments"
      button = {buttonGroup}
       />
+
+        {tournamentItems}
         </Block>
  
     </Fragment>
@@ -37,4 +61,4 @@ const Tournament = () => {
 }
 
 export default Tournament;
-// Mike's test github
+
