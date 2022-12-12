@@ -7,7 +7,6 @@ import Main from "./Components/Main/Main";
 import NotFound from "./Components/Main/notFound";
 import { Fragment, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { getMembers } from "./api/services/members/getMembers";
 import { getData } from "./api/services/getData";
 
 function App() {
