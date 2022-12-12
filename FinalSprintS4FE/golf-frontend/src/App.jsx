@@ -8,18 +8,26 @@ import NotFound from "./Components/Main/notFound";
 import { Fragment, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getMembers } from "./api/services/members/getMembers";
+import { getData } from "./api/services/getData";
 
 function App() {
   const [members, setMembers] = useState([]);
+  const [tournaments, setTournaments] = useState([]);
 
   useEffect(() => {
     getMemberData();
+    getTournamentData();
   }, []);
 
   // Data Fetching
   const getMemberData = async () => {
-    const memberData = await getMembers();
+    const memberData = await getData("/api/member/all");
     setMembers(memberData);
+  };
+
+  const getTournamentData = async() =>{
+    const tournamentData = await getData("/api/tournament/all");
+    setTournaments(tournamentData);
   };
 
   return (

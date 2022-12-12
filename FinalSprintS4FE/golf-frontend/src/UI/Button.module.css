@@ -29,4 +29,20 @@
   }
 
 
+  @media screen and (max-width: 768px) {
+    .btnContainer {
+      flex-direction: column;
+    }
+
+    .icon{
+        margin-right: 0;
+    }
+    .button{
+        padding: 0.5rem 1rem;
+        justify-content:flex-start;
+        align-items:flex-start
+    }
+  }
+
+
   
