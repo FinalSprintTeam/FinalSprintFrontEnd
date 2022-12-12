@@ -5,10 +5,23 @@ import Member from "./Components/Member/Member";
 import Tournament from "./Components/Tournament/Tournament";
 import Main from "./Components/Main/Main";
 import NotFound from "./Components/Main/notFound";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { getMembers } from "./api/services/members/getMembers";
 
 function App() {
+  const [members, setMembers] = useState("");
+
+  useEffect(() => {
+    getMemberData();
+  }, []);
+
+  // Data Fetching
+  const getMemberData = async () => {
+    const memberData = await getMembers();
+    setMembers(memberData);
+  };
+
   return (
     <Fragment>
       <header>
