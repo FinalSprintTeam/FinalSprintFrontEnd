@@ -12,11 +12,11 @@ import TournamentContext from "./Components/Context/tournament-context";
 
 function App() {
   const [members, setMembers] = useState([]);
-  const [tournaments, setTournaments] = useState([]);
+  const tourCtx = useContext(TournamentContext);
 
   useEffect(() => {
     getMemberData();
-    getTournamentData();
+    tourCtx.getTournament();
   }, []);
 
   // Data Fetching
@@ -25,14 +25,12 @@ function App() {
     setMembers(memberData);
   };
 
-  const getTournamentData = async() =>{
-    const tournamentData = await getData("/api/tournament/all");
-    setTournaments(tournamentData);
-  };
+  // const getTournamentData = async() =>{
+  //   const tournamentData = await getData("/api/tournament/all");
+  //   setTournaments(tournamentData);
+  // };
 
-  
-
-  return ( 
+  return (
     <Fragment>
       <header>
         <NavBar />
@@ -41,8 +39,8 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/members" element={<Member memberData = {members}/>} />
-          <Route path="/tournaments" element={<Tournament tournamentData = {tournaments} />} />
+          <Route path="/members" element={<Member memberData={members} />} />
+          <Route path="/tournaments" element={<Tournament />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
