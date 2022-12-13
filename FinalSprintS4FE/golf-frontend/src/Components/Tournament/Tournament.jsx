@@ -10,11 +10,12 @@ import styles from "./TournamentItem.module.css";
 import Card from "../../UI/Card";
 import TournamentItem from "./TournamentItem";
 import TournamentForm from "./TournamentForm";
-import { useContext } from "react";
+import { useContext} from "react";
 import TournamentContext from "../Context/tournament-context";
+import { useNavigate } from "react-router-dom";
 
 const Tournament = ({}) => {
-  const [showTable, setShowTable] = useState(false);
+  const [showTable, setShowTable] = useState(true);
   const [showForum, setShowForum] = useState(false);
   const tourCtx = useContext(TournamentContext);
   const tournamentData = tourCtx.tournaments;
@@ -31,10 +32,19 @@ const Tournament = ({}) => {
     setShowTable(false);
   };
 
+  const navigate = useNavigate();
+  const goToTournamentDetail = (id) => navigate(`/tournaments/${id}/detail`)
+  
+  const onSelection = (id) =>{
+    tourCtx.setCurrentId(id)
+    goToTournamentDetail(id)
+
+  }
+
   const tournamentItems = (
     <ul className={styles["tournament-items"]}>
       {tournamentData.map((tournament) => (
-        <TournamentItem id={tournament.id} name={tournament.name} />
+        <TournamentItem id={tournament.id} name={tournament.name} onSelection = {onSelection} />
       ))}
     </ul>
   );
@@ -62,7 +72,9 @@ const Tournament = ({}) => {
         <Header title="Tournaments" button={buttonGroup} />
         {showTable && tournamentItems}
 
-        {showForum && <TournamentForm />}
+        {showForum && <TournamentForm 
+        displayTable = {onViewTournamentClick}
+         />}
       </Block>
     </Fragment>
   );
