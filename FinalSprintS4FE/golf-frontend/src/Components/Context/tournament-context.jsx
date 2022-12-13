@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import { postTournament } from "../../api/services/tournament/postTournament";
 const TournamentContext = React.createContext({
     tournamentname: "",
     getTournamentName:(tournamentname) =>{},
@@ -11,6 +11,7 @@ const TournamentContext = React.createContext({
     getLocation: (location) =>{},
     entryfee: 0,
     getEntryFee: (entryfee) =>{},
+    postTournament : (tournament) =>{},
 
 });
 
@@ -22,6 +23,9 @@ export const TournamentContextProvider = (props) =>{
     const [locaiton, setLocation ] = useState("")
     const [entryfee, setEntryFee] = useState("")
 
+    const postTournamentHandler =(tournament) =>{    
+       postTournament("/api/tournament/new", tournament)
+    }
 
    const getTournamentNameHandler=(name)=>{
         setTournamentName(name);
@@ -54,6 +58,7 @@ export const TournamentContextProvider = (props) =>{
         getLocation: getLocationHandler,
         entryfee: entryfee,
         getEntryFee: getEntryFeeHandler,
+        
     };
     return(
        <TournamentContext.Provider value = {contextValue}>

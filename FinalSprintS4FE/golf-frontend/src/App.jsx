@@ -5,9 +5,10 @@ import Member from "./Components/Member/Member";
 import Tournament from "./Components/Tournament/Tournament";
 import Main from "./Components/Main/Main";
 import NotFound from "./Components/Main/notFound";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getData } from "./api/services/getData";
+import TournamentContext from "./Components/Context/tournament-context";
 
 function App() {
   const [members, setMembers] = useState([]);
@@ -28,6 +29,8 @@ function App() {
     const tournamentData = await getData("/api/tournament/all");
     setTournaments(tournamentData);
   };
+
+  
 
   return ( 
     <Fragment>
