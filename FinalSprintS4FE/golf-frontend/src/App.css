@@ -37,7 +37,6 @@
   }
 }
 
-
 html,
 body,
 #root {
@@ -73,7 +72,7 @@ footer h5 {
   color: white;
 }
 
-nav h1{
+nav h1 {
   z-index: 0;
   font-family: 'Hanalei Fill', cursive;
   font-size: 3rem;
