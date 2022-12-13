@@ -8,22 +8,34 @@ import { MdViewList } from 'react-icons/md'
 import { useState } from 'react'
 import styles from "./TournamentItem.module.css"
 import Card from '../../UI/Card'
+import TournamentItem from './TournamentItem'
+import TournamentForm from './TournamentForm'
 
 
 
 const Tournament = ({tournamentData}) => {
     const [showTable, setShowTable] = useState(false);
+    const [showForum, setShowForum] = useState(false);
     const iconAdd = <IoIosAddCircle/>
     const iconView = <MdViewList/>
     
-    const onClick = () =>{
-        setShowTable(true);          
+    const onViewTournamentClick = () =>{
+        setShowTable(true);   
+        setShowForum(false);       
+    }
+
+    const onAddTournamentClick = () =>{
+        setShowForum(true);
+        setShowTable(false);
     }
 
     const tournamentItems = (
         <ul className={styles["tournament-items"]}>
             {tournamentData.map((tournament) =>(
-                <li key={tournament.id}>{tournament.name}</li>
+                <TournamentItem 
+                id = {tournament.id}
+                name = {tournament.name}
+                />
                
             ))}
         </ul>
@@ -35,12 +47,13 @@ const Tournament = ({tournamentData}) => {
         label= "Add Tournament"
         style = {classes}
         icon = {iconAdd}
-        handleClick = {onClick}
+        handleClick = {onAddTournamentClick}
     />   
     <Button
         label= "View Tournaments"
         style = {classes}
         icon = {iconView}
+        handleClick = {onViewTournamentClick}
     />   
 </div> 
 
@@ -51,8 +64,9 @@ const Tournament = ({tournamentData}) => {
      title = "Tournaments"
      button = {buttonGroup}
       />
-
-        {tournamentItems}
+    {showTable && tournamentItems}
+    
+    {showForum && <TournamentForm/>  } 
         </Block>
  
     </Fragment>
