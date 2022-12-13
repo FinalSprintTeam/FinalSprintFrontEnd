@@ -1,4 +1,3 @@
 const API_ENDPOINT = "http://localhost:8081";
-// const API_ENDPOINT = "http://ec2-34-234-175-123.compute-1.amazonaws.com";
-
+// const API_ENDPOINT = "http://semester4-sprint2.us-east-1.elasticbeanstalk.com";
 export { API_ENDPOINT };

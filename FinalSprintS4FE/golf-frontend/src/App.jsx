@@ -29,7 +29,7 @@ function App() {
     setTournaments(tournamentData);
   };
 
-  return (
+  return ( 
     <Fragment>
       <header>
         <NavBar />
