@@ -1,4 +1,4 @@
-import { API_ENDPOINT } from "../connection/server";
+import { API_ENDPOINT } from "../../connection/server";
 
 const postTournament = async (api, tournament) => {
   const res = await fetch(API_ENDPOINT + api, {
