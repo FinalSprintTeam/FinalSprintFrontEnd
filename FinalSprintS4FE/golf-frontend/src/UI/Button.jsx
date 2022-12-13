@@ -1,9 +1,9 @@
 import React from 'react'
 import classes from './Button.module.css'
 
-const Button = ({label, style, onClick, icon}) => {
+const Button = ({label, style, handleClick, icon}) => {
   return (
-    <button  className={style.button} >
+    <button  className={style.button} onClick = {handleClick} >
          <span className={style.icon}>
             {icon}
         </span>
@@ -14,11 +14,3 @@ const Button = ({label, style, onClick, icon}) => {
 
 export default Button;
 
-
-
-{/* <button className={style.button} onClick = {onClick}>
-        <span className={style.icon}>
-            {icon}
-        </span>
-        <span> {label}</span>
-    </button> */}
