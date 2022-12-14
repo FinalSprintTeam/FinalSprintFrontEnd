@@ -22,12 +22,12 @@ export const TournamentContextProvider = (props) => {
   );
 
   const getTournamentHandler = async () => {
-    const tournamentData = await getData("/api/tournament/all");
+    const tournamentData = await getData('/api/tournament/all');
     setTournaments(tournamentData);
   };
 
   const postTournamentHandler = (tournament) => {
-    postTournament("/api/tournament/new", tournament);
+    postTournament('/api/tournament/new', tournament);
     setTournaments([...tournaments, tournament]);
   };
 

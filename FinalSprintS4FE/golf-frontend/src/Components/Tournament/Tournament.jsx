@@ -42,7 +42,7 @@ const Tournament = ({}) => {
   }
 
   const tournamentItems = (
-    <ul className={styles["tournament-items"]}>
+    <ul className={styles['tournament-items']}>
       {tournamentData.map((tournament) => (
         <TournamentItem id={tournament.id} name={tournament.name} onSelection = {onSelection} />
       ))}
@@ -52,13 +52,13 @@ const Tournament = ({}) => {
   const buttonGroup = (
     <div className={classes.btnContainer}>
       <Button
-        label="Add Tournament"
+        label='Add Tournament'
         style={classes}
         icon={iconAdd}
         handleClick={onAddTournamentClick}
       />
       <Button
-        label="View Tournaments"
+        label='View Tournaments'
         style={classes}
         icon={iconView}
         handleClick={onViewTournamentClick}
