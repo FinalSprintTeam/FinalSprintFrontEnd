@@ -9,7 +9,7 @@ const Header = ({ title, button, url }) => {
         {button}
       </header>
       <div className={classes["main-image"]}>
-        {/* <img src={url} alt="picture of a golf tournament or left blank" /> */}
+        <img src={url} alt="picture of a golf tournament or left blank" />
       </div>
     </Fragment>
   );
