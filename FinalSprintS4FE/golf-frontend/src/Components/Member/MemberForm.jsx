@@ -1,9 +1,10 @@
-import classes from './MemberForm.module.css';
-import React, { useRef, useState, Fragment, useContext } from 'react';
-import Input from '../../UI/Input';
-import MemberContext from '../Context/member-context';
+import classes from "./MemberForm.module.css";
+import React, { useRef, useState, Fragment, useContext } from "react";
+import Input from "../../UI/Input";
+import MemberContext from "../Context/member-context";
 
-const Forum = () => {
+const MemberForm = () => {
+  const [city, setCity] = useState("");
   const cityInput = useRef();
   const countryInput = useRef();
   const postalCodeInput = useRef();
@@ -15,10 +16,6 @@ const Forum = () => {
   const joinDateInput = useRef();
   const lastNameInput = useRef();
 
-  const startDateInput = useRef();
-  const endDateInput = useRef();
-  const locationInput = useRef();
-
   const membershipInput = useRef();
 
   const memberCtx = useContext(MemberContext);
@@ -28,12 +25,20 @@ const Forum = () => {
 
     const memberObj = {
       firstName: firstNameInput.current.value,
-      startDate: startDateInput.current.value,
-      endDate: endDateInput.current.value,
-      location: locationInput.current.value,
+      joinDate: joinDateInput.current.value,
+      email: emailInput.current.value,
+      lastName: lastNameInput.current.value,
     };
 
-    // memberCtx.postMember(memberObj);
+    const addressObj = {
+      streetAddress: streetAdrInput.current.value,
+      city: streetAdrInput.current.value,
+      postalCode: streetAdrInput.current.value,
+      province: streetAdrInput.current.value,
+      country: streetAdrInput.current.value,
+    };
+
+    memberCtx.postMember(memberObj, addressObj, "Normal");
   };
 
   const [value, setValue] = React.useState(false);
@@ -47,8 +52,7 @@ const Forum = () => {
       <h1 className={classes.title}>Add Members</h1>
       <form className={classes.form} onSubmit={submitHandler}>
         <Input
-          ref={cityInput}
-          label='City:'
+          label="City:"
           input={{
             id: 'city',
             type: 'text',
@@ -59,7 +63,7 @@ const Forum = () => {
         />
         <Input
           ref={countryInput}
-          label='Country:'
+          label="Country:"
           input={{
             id: 'country',
             type: 'text',
@@ -70,7 +74,7 @@ const Forum = () => {
         />
         <Input
           ref={postalCodeInput}
-          label='Postal Code:'
+          label="Postal Code:"
           input={{
             id: 'pcode',
             type: 'text',
@@ -83,7 +87,7 @@ const Forum = () => {
         {/* Maybe dropdown radio*/}
         <Input
           ref={provinceInput}
-          label='Province:'
+          label="Province:"
           input={{
             id: 'province',
             type: 'text',
@@ -95,7 +99,7 @@ const Forum = () => {
 
         <Input
           ref={streetAdrInput}
-          label='Street Address:'
+          label="Street Address:"
           input={{
             id: 'strAddr',
             type: 'text',
@@ -107,7 +111,7 @@ const Forum = () => {
 
         <Input
           ref={emailInput}
-          label='Email:'
+          label="Email:"
           input={{
             id: 'email',
             type: 'text',
@@ -118,7 +122,7 @@ const Forum = () => {
         />
         <Input
           ref={firstNameInput}
-          label='First Name: '
+          label="First Name: "
           input={{
             id: 'fName',
             type: 'text',
@@ -130,7 +134,7 @@ const Forum = () => {
 
         <Input
           ref={lastNameInput}
-          label='Last Name: '
+          label="Last Name: "
           input={{
             id: 'lName',
             type: 'text',
@@ -142,7 +146,7 @@ const Forum = () => {
 
         <Input
           ref={joinDateInput}
-          label='Join Date'
+          label="Join Date"
           input={{
             id: 'joinDate',
             type: 'date',
@@ -184,4 +188,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default MemberForm;

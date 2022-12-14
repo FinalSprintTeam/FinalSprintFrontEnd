@@ -16,8 +16,8 @@ export const MemberContextProvider = (props) => {
     setMembers(memberData);
   };
 
-  const postMemberHandler = (member) => {
-    postMember("/api/member/new", member);
+  const postMemberHandler = (member, address, memType) => {
+    postMember(member, address, memType);
     setMembers([...members, member]);
   };
 
