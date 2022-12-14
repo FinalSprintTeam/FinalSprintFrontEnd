@@ -1,11 +1,17 @@
 import React from "react";
 import classes from "./Input.module.css";
 
-const InputState = ({ label, input, onChange }) => {
+const InputState = ({ label, input, onChange, formControl }) => {
   return (
-    <div className={`${classes.input}`}>
-      <label htmlFor={input.id}>{label}</label>
-      <input {...input} onChange={(e) => onChange(e.target.value)} />
+    <div className={formControl}>
+      <label htmlFor={input.id} className="col-form-label">
+        {label}
+      </label>
+      <input
+        {...input}
+        onChange={(e) => onChange(e.target.value)}
+        className="form-control"
+      />
     </div>
   );
 };

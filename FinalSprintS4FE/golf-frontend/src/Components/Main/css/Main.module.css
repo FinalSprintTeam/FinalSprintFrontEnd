@@ -1,4 +1,4 @@
-body {
+/* body {
   height: 100vh;
 
   background-image: url("https://images.unsplash.com/photo-1632946269126-0f8edbe8b068");
@@ -6,7 +6,7 @@ body {
   background-size: 100%;
   background-position: center;
   background-color: aqua;
-}
+} */
 
 .imageContainer1 {
   display: grid;

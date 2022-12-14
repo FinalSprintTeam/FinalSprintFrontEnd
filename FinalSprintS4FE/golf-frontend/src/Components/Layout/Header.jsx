@@ -8,12 +8,12 @@ const Header = ({ title, button }) => {
         <h1>{title}</h1>
         {button}
       </header>
-      <div className={classes["main-image"]}>
+      {/* <div className={classes["main-image"]}>
         <img
           src="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
           alt="picture of a gofl ball and pin"
         />
-      </div>
+      </div> */}
     </Fragment>
   );
 };

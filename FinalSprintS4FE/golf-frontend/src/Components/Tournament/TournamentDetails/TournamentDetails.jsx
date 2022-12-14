@@ -41,6 +41,7 @@ const TournamentDetails = () => {
   const onDeleteTournament = () => {
     tourCtx.deleteTournament(tourCtx.currentTournament.id);
     // ADD A VALIDATION HERE - PROMPT "ARE YOU SURE?"
+
     goToTournamentList();
   };
 
@@ -87,15 +88,15 @@ const TournamentDetails = () => {
             url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
           ></Header>
           <BackGround>
+            <TournamentDetailsBody
+              name={tourCtx.currentTournament.name}
+              startDate={`Start Date: ${tourCtx.currentTournament.startDate}`}
+              endDate={`End Date: ${tourCtx.currentTournament.endDate}`}
+              location={`Location: ${tourCtx.currentTournament.location}`}
+              entryFee={`Entry Fee: $${tourCtx.currentTournament.entryFee}`}
+            />
             {showDetails && (
               <>
-                <TournamentDetailsBody
-                  name={tourCtx.currentTournament.name}
-                  startDate={`Start Date: ${tourCtx.currentTournament.startDate}`}
-                  endDate={`End Date: ${tourCtx.currentTournament.endDate}`}
-                  location={`Location: ${tourCtx.currentTournament.location}`}
-                  entryFee={`Entry Fee: $${tourCtx.currentTournament.entryFee}`}
-                />
                 <TournamentMemberDetails
                   memebers={tourCtx.currentTournament.memebers}
                 />
@@ -105,7 +106,7 @@ const TournamentDetails = () => {
             {showUpdateTournament && (
               <TournamentForum
                 displayTable={displayDetails}
-                title="Update Tournament"
+                title={null}
                 valueName={tourCtx.currentTournament.name}
                 valueStartDate={tourCtx.currentTournament.startDate}
                 valueEndDate={tourCtx.currentTournament.endDate}

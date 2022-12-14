@@ -52,133 +52,164 @@ const MemberForm = () => {
       <form className={classes.form} onSubmit={submitHandler}>
         <div>
           <h2>Member Info</h2>
-          <InputState
-            label="First Name: "
-            input={{
-              id: "fName",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "First Name",
-            }}
-            onChange={setFirstName}
-          />
-          <InputState
-            label="Last Name: "
-            input={{
-              id: "lName",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "Last Name",
-            }}
-            onChange={setLastName}
-          />
-          <InputState
-            label="Email:"
-            input={{
-              id: "email",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "Email",
-            }}
-            onChange={setEmail}
-          />
-          <InputState
-            label="Join Date"
-            input={{
-              id: "joinDate",
-              type: "date",
-            }}
-            onChange={setJoinDate}
-          />
+          <div className="form-group row">
+            <InputState
+              formControl="form-group col-md-8 offset-md-2"
+              label="First Name: "
+              input={{
+                id: "fName",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "First Name",
+              }}
+              onChange={setFirstName}
+            />
+          </div>
+          <div className="form-group row">
+            <InputState
+              formControl="form-group col-md-8 offset-md-2"
+              label="Last Name: "
+              input={{
+                id: "lName",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "Last Name",
+              }}
+              onChange={setLastName}
+            />
+          </div>
+          <div className="form-group row">
+            <InputState
+              formControl="form-group col-md-8 offset-md-2"
+              label="Email:"
+              input={{
+                id: "email",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "Email",
+              }}
+              onChange={setEmail}
+            />
+          </div>
+          <div className="form-group row">
+            <InputState
+              formControl="form-group col-md-8 offset-md-2"
+              label="Join Date"
+              input={{
+                id: "joinDate",
+                type: "date",
+              }}
+              onChange={setJoinDate}
+            />
+          </div>
         </div>
+        <hr />
         <div>
           <h2>Address Info</h2>
-          <InputState
-            label="Street Address:"
-            input={{
-              id: "strAddr",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "Street Address",
-            }}
-            onChange={setAddress}
-          />
-          <InputState
-            label="City:"
-            input={{
-              id: "city",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "City",
-            }}
-            onChange={setCity}
-          />
-          <InputState
-            label="Province:"
-            input={{
-              id: "province",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "Province",
-            }}
-            onChange={setProvince}
-          />
-          <InputState
-            label="Postal Code:"
-            input={{
-              id: "pcode",
-              type: "text",
-              min: "1",
-              max: "7",
-              placeholder: "Postal Code",
-            }}
-            onChange={setPostal}
-          />
-          <InputState
-            label="Country:"
-            input={{
-              id: "country",
-              type: "text",
-              min: "1",
-              max: "255",
-              placeholder: "Country",
-            }}
-            onChange={setCountry}
-          />
+          <div className="form-group row">
+            <InputState
+              formControl="form-group col-md-8 offset-md-2"
+              label="Street Address:"
+              input={{
+                id: "strAddr",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "Street Address",
+              }}
+              onChange={setAddress}
+            />
+          </div>
+          <div className="form-group row">
+            <InputState
+              formControl="form-group col-md-3  offset-md-2"
+              label="City:"
+              input={{
+                id: "city",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "City",
+              }}
+              onChange={setCity}
+            />
+            <InputState
+              formControl="form-group col-md-2"
+              label="Province:"
+              input={{
+                id: "province",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "Province",
+              }}
+              onChange={setProvince}
+            />
+            <InputState
+              formControl="form-group col-md-3"
+              label="Postal:"
+              input={{
+                id: "pcode",
+                type: "text",
+                min: "1",
+                max: "7",
+                placeholder: "Postal",
+              }}
+              onChange={setPostal}
+            />
+          </div>
+          <div className="form-row">
+            <InputState
+              formControl="form-group col-md-8 offset-md-2"
+              label="Country:"
+              input={{
+                id: "country",
+                type: "text",
+                min: "1",
+                max: "255",
+                placeholder: "Country",
+              }}
+              onChange={setCountry}
+            />
+          </div>
         </div>
 
         {/* Maybe dropdown radio*/}
 
         {/* Membership */}
-        <div>
-          <h3>Membership Type:</h3>
-          <input
-            type="radio"
-            name="memType"
-            value="Normal"
-            onChange={(e) => setMembership(e.target.value)}
-          />{" "}
-          Normal
-          <input
-            type="radio"
-            name="memType"
-            value="Premium"
-            onChange={(e) => setMembership(e.target.value)}
-          />{" "}
-          Premium
-          <input
-            type="radio"
-            name="memType"
-            value="Premium"
-            onChange={(e) => setMembership(e.target.value)}
-          />{" "}
-          Trial
+        <hr />
+        <div className={classes.radioControl}>
+          <h2>Membership Type:</h2>
+          <div>
+            <label htmlFor="memType">Normal</label>
+            <input
+              type="radio"
+              name="memType"
+              value="Normal"
+              onChange={(e) => setMembership(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="memType">Premium</label>
+            <input
+              type="radio"
+              name="memType"
+              value="Premium"
+              onChange={(e) => setMembership(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="memType">Trial</label>
+            <input
+              type="radio"
+              name="memType"
+              value="Premium"
+              onChange={(e) => setMembership(e.target.value)}
+            />
+          </div>
         </div>
 
         <button>Submit</button>
