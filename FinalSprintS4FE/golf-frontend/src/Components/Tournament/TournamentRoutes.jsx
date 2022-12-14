@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom';
-import TournamentDetails from '../Tournament/TournamentDetails'
+import TournamentDetails from './TournamentDetails/TournamentDetails'
 import Tournament from './Tournament';
 
 

@@ -63,13 +63,14 @@ const Tournament = ({}) => {
         icon={iconView}
         handleClick={onViewTournamentClick}
       />
+      
     </div>
   );
 
   return (
     <Fragment>
       <Block>
-        <Header title="Tournaments" button={buttonGroup} />
+        <Header title="Tournaments" button={buttonGroup} url = "https://source.unsplash.com/WHf1wtNMMLU/1920x1340" />
         {showTable && tournamentItems}
 
         {showForum && <TournamentForm 
