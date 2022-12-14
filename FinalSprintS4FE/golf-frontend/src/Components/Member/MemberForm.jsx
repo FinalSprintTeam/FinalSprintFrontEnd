@@ -1,25 +1,22 @@
-import classes from './MemberForm.module.css';
-import React, { useRef, useState, Fragment, useContext } from 'react';
-import Input from '../../UI/Input';
-import MemberContext from '../Context/member-context';
+import classes from "./MemberForm.module.css";
+import React, { useRef, useState, Fragment, useContext } from "react";
+import Input from "../../UI/Input";
+import MemberContext from "../Context/member-context";
+import InputState from "../../UI/InputState";
 
-const Forum = () => {
-  const cityInput = useRef();
-  const countryInput = useRef();
-  const postalCodeInput = useRef();
-  const provinceInput = useRef();
-  const streetAdrInput = useRef();
+const MemberForm = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [joinDate, setJoinDate] = useState("");
 
-  const emailInput = useRef();
-  const firstNameInput = useRef();
-  const joinDateInput = useRef();
-  const lastNameInput = useRef();
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [province, setProvince] = useState("");
+  const [postal, setPostal] = useState("");
+  const [country, setCountry] = useState("");
 
-  const startDateInput = useRef();
-  const endDateInput = useRef();
-  const locationInput = useRef();
-
-  const membershipInput = useRef();
+  const [membership, setMembership] = useState("");
 
   const memberCtx = useContext(MemberContext);
 
@@ -27,13 +24,21 @@ const Forum = () => {
     event.preventDefault();
 
     const memberObj = {
-      firstName: firstNameInput.current.value,
-      startDate: startDateInput.current.value,
-      endDate: endDateInput.current.value,
-      location: locationInput.current.value,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      joinDate: joinDate,
     };
 
-    // memberCtx.postMember(memberObj);
+    const addressObj = {
+      streetAddress: address,
+      city: city,
+      province: province,
+      postalCode: postal,
+      country: country,
+    };
+
+    memberCtx.postMember(memberObj, addressObj, "Normal");
   };
 
   const [value, setValue] = React.useState(false);
@@ -46,135 +51,134 @@ const Forum = () => {
     <Fragment>
       <h1 className={classes.title}>Add Members</h1>
       <form className={classes.form} onSubmit={submitHandler}>
-        <Input
-          ref={cityInput}
-          label='City:'
-          input={{
-            id: 'city',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'City',
-          }}
-        />
-        <Input
-          ref={countryInput}
-          label='Country:'
-          input={{
-            id: 'country',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Country',
-          }}
-        />
-        <Input
-          ref={postalCodeInput}
-          label='Postal Code:'
-          input={{
-            id: 'pcode',
-            type: 'text',
-            min: '1',
-            max: '7',
-            placeholder: 'Postal Code',
-          }}
-        />
+        <div>
+          <h2>Member Info</h2>
+          <InputState
+            label="First Name: "
+            input={{
+              id: "fName",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "First Name",
+            }}
+            onChange={setFirstName}
+          />
+          <InputState
+            label="Last Name: "
+            input={{
+              id: "lName",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "Last Name",
+            }}
+            onChange={setLastName}
+          />
+          <InputState
+            label="Email:"
+            input={{
+              id: "email",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "Email",
+            }}
+            onChange={setEmail}
+          />
+          <InputState
+            label="Join Date"
+            input={{
+              id: "joinDate",
+              type: "date",
+            }}
+            onChange={setJoinDate}
+          />
+        </div>
+        <div>
+          <h2>Address Info</h2>
+          <InputState
+            label="Street Address:"
+            input={{
+              id: "strAddr",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "Street Address",
+            }}
+            onChange={setAddress}
+          />
+          <InputState
+            label="City:"
+            input={{
+              id: "city",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "City",
+            }}
+            onChange={setCity}
+          />
+          <InputState
+            label="Province:"
+            input={{
+              id: "province",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "Province",
+            }}
+            onChange={setProvince}
+          />
+          <InputState
+            label="Postal Code:"
+            input={{
+              id: "pcode",
+              type: "text",
+              min: "1",
+              max: "7",
+              placeholder: "Postal Code",
+            }}
+            onChange={setPostal}
+          />
+          <InputState
+            label="Country:"
+            input={{
+              id: "country",
+              type: "text",
+              min: "1",
+              max: "255",
+              placeholder: "Country",
+            }}
+            onChange={setCountry}
+          />
+        </div>
 
         {/* Maybe dropdown radio*/}
-        <Input
-          ref={provinceInput}
-          label='Province:'
-          input={{
-            id: 'province',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Province',
-          }}
-        />
-
-        <Input
-          ref={streetAdrInput}
-          label='Street Address:'
-          input={{
-            id: 'strAddr',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Street Address',
-          }}
-        />
-
-        <Input
-          ref={emailInput}
-          label='Email:'
-          input={{
-            id: 'email',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Email',
-          }}
-        />
-        <Input
-          ref={firstNameInput}
-          label='First Name: '
-          input={{
-            id: 'fName',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'First Name',
-          }}
-        />
-
-        <Input
-          ref={lastNameInput}
-          label='Last Name: '
-          input={{
-            id: 'lName',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Last Name',
-          }}
-        />
-
-        <Input
-          ref={joinDateInput}
-          label='Join Date'
-          input={{
-            id: 'joinDate',
-            type: 'date',
-          }}
-        />
 
         {/* Membership */}
         <div>
           <h3>Membership Type:</h3>
           <input
-            ref={membershipInput}
-            type='radio'
-            name='memType'
-            value='Normal'
-            onChange={(e) => setValue(e.target.value)}
-          />{' '}
+            type="radio"
+            name="memType"
+            value="Normal"
+            onChange={(e) => setMembership(e.target.value)}
+          />{" "}
           Normal
           <input
-            ref={membershipInput}
-            type='radio'
-            name='memType'
-            value='Premium'
-            onChange={(e) => setValue(e.target.value)}
-          />{' '}
+            type="radio"
+            name="memType"
+            value="Premium"
+            onChange={(e) => setMembership(e.target.value)}
+          />{" "}
           Premium
           <input
-            ref={membershipInput}
-            type='radio'
-            name='memType'
-            value='Premium'
-            onChange={(e) => setValue(e.target.value)}
-          />{' '}
+            type="radio"
+            name="memType"
+            value="Premium"
+            onChange={(e) => setMembership(e.target.value)}
+          />{" "}
           Trial
         </div>
 
@@ -184,4 +188,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default MemberForm;
