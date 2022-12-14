@@ -16,9 +16,9 @@ export const MemberContextProvider = (props) => {
     setMembers(memberData);
   };
 
-  const postMemberHandler = (member, address, memType) => {
-    postMember(member, address, memType);
-    setMembers([...members, member]);
+  const postMemberHandler = async (member, address, memType) => {
+    const newMem = await postMember(member, address, memType);
+    setMembers([...members, newMem]);
   };
 
   const contextValue = {

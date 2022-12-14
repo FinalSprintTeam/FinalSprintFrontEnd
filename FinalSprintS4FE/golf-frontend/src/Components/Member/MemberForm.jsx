@@ -23,6 +23,11 @@ const MemberForm = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
+    // VALIDATIONS WILL GO HERE - IMPORTANT //
+
+    // End of validations
+
+    // Create objects that match model for back-end
     const memberObj = {
       firstName: firstName,
       lastName: lastName,
@@ -38,13 +43,7 @@ const MemberForm = () => {
       country: country,
     };
 
-    memberCtx.postMember(memberObj, addressObj, "Normal");
-  };
-
-  const [value, setValue] = React.useState(false);
-
-  const handleChange = () => {
-    setValue(!value);
+    memberCtx.postMember(memberObj, addressObj, membership);
   };
 
   return (

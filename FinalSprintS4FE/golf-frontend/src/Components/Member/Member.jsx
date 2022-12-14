@@ -17,7 +17,6 @@ const Member = ({}) => {
   const [showTable, setShowTable] = useState(false);
   const [showForum, setShowForum] = useState(false);
   const memberCtx = useContext(MemberContext);
-  console.log(memberCtx);
   const memberData = memberCtx.members;
   const iconAdd = <IoIosAddCircle />;
   const iconView = <MdViewList />;
