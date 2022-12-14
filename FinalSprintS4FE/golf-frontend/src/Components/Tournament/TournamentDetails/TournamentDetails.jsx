@@ -10,6 +10,8 @@ import Block from "../../../UI/Block";
 import TournamentDetailsBody from "./TournamentDetailsBody";
 import TournamentForum from "../TournamentForm";
 import { useNavigate } from "react-router-dom";
+import TournamentMemberDetails from "./TournamentMemberDetails";
+import BackGround from "../../../UI/Background";
 
 const TournamentDetails = () => {
   // tournament store
@@ -86,6 +88,7 @@ const TournamentDetails = () => {
           ></Header>
           <div className="container">
             {showDetails && (
+              <BackGround>
               <TournamentDetailsBody
                 name ={tourCtx.currentTournament.name}
                 startDate={`Start Date: ${tourCtx.currentTournament.startDate}`}
@@ -93,9 +96,14 @@ const TournamentDetails = () => {
                 location={`Location: ${tourCtx.currentTournament.location}`}
                 entryFee={`Entry Fee: $${tourCtx.currentTournament.entryFee}`}
               />
+              <TournamentMemberDetails
+              memebers = {tourCtx.currentTournament.memebers} 
+              />
+              </BackGround>
             )}
           </div>
            {showUpdateTournament && 
+           <BackGround>
            <TournamentForum
             displayTable={displayDetails}
             title="Update Tournament"
@@ -105,7 +113,7 @@ const TournamentDetails = () => {
             valueLocation={tourCtx.currentTournament.location}
             valueEntryFee={tourCtx.currentTournament.entryFee}
             editCheck={true}
-          />}   
+          /> </BackGround>}   
           
         </div>
       )}

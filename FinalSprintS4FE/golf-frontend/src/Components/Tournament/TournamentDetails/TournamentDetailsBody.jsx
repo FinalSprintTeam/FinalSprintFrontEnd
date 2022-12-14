@@ -1,10 +1,10 @@
-import React from "react";
+import {Fragment} from "react";
 import classes from "./TournamentDetailsBody.module.css";
 import Card from "../../../UI/Card";
 import BackGround from "../../../UI/Background";
 function TournamentDetailsBody({ startDate, endDate, location, entryFee, name }) {
   return (
-    <BackGround>
+    <Fragment>
     <h1 className={classes.title}>{name}</h1>
         
       <div className={classes.grid}>
@@ -39,7 +39,7 @@ function TournamentDetailsBody({ startDate, endDate, location, entryFee, name })
            
        
       </div>
-      </BackGround>
+      </Fragment>
   );
 }
 
