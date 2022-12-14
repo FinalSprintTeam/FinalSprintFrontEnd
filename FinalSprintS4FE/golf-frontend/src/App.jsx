@@ -9,22 +9,23 @@ import { Fragment, useEffect, useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getData } from "./api/services/getData";
 import TournamentContext from "./Components/Context/tournament-context";
-import TournamentRoutes from "./Components/Tournament/TournamentRoutes"
+import TournamentRoutes from "./Components/Tournament/TournamentRoutes";
+import MemberContext from "./Components/Context/member-context";
 
 function App() {
-  const [members, setMembers] = useState([]);
   const tourCtx = useContext(TournamentContext);
+  const memCtx = useContext(MemberContext);
 
   useEffect(() => {
-    getMemberData();
+    memCtx.getMember();
     tourCtx.getTournament();
   }, []);
 
   // Data Fetching
-  const getMemberData = async () => {
-    const memberData = await getData("/api/member/all");
-    setMembers(memberData);
-  };
+  // const getMemberData = async () => {
+  //   const memberData = await getData("/api/member/all");
+  //   setMembers(memberData);
+  // };
 
   // const getTournamentData = async() =>{
   //   const tournamentData = await getData("/api/tournament/all");
@@ -40,8 +41,8 @@ function App() {
       <main className="App">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/members" element={<Member memberData={members} />} />
-          <Route path="/tournaments/*" element={<TournamentRoutes/>} />
+          <Route path="/members" element={<Member />} />
+          <Route path="/tournaments/*" element={<TournamentRoutes />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
