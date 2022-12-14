@@ -37,7 +37,7 @@ const TournamentForm = (props) => {
     <Fragment>
       <h1 className={classes.title}>{props.title}</h1>
       <form className={classes.form} onSubmit={submitHandler}>
-        <div className="form-row">
+        <div className="form-group row">
           <Input
             formControl="form-group col-md-8 offset-md-2"
             ref={nameInput}
@@ -53,7 +53,7 @@ const TournamentForm = (props) => {
           />
         </div>
 
-        <div className="form-row">
+        <div className="form-group row">
           <Input
             formControl="form-group col-md-8 offset-md-2"
             ref={startDateInput}
@@ -66,7 +66,7 @@ const TournamentForm = (props) => {
           />
         </div>
 
-        <div className="form-row">
+        <div className="form-group row">
           <Input
             formControl="form-group col-md-8 offset-md-2"
             ref={endDateInput}
@@ -79,7 +79,7 @@ const TournamentForm = (props) => {
           />
         </div>
 
-        <div className="form-row">
+        <div className="form-group row">
           <Input
             formControl="form-group col-md-8 offset-md-2"
             ref={locationInput}
@@ -95,7 +95,7 @@ const TournamentForm = (props) => {
           />
         </div>
 
-        <div className="form-row">
+        <div className="form-group row">
           <Input
             formControl="form-group col-md-8 offset-md-2"
             style="number"

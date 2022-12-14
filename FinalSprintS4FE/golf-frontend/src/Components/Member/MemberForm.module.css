@@ -1,6 +1,6 @@
 .form {
   margin: 0.25rem auto;
-  width: 95%;
+  /* width: 95%; */
   max-width: 40rem;
   border-radius: 6px;
   background-color: #0d6efd;
@@ -31,7 +31,22 @@
   border-color: #00008b;
 }
 
+.form h2 {
+  color: white;
+  text-decoration: underline;
+}
+
 .title {
   color: white;
   margin-bottom: 1rem;
+}
+
+.radioControl div {
+  display: flex;
+  justify-content: center;
+  margin: auto 25%;
+}
+
+.radioControl div label {
+  margin-right: 5%;
 }
