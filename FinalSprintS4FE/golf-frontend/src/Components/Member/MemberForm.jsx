@@ -41,6 +41,12 @@ const MemberForm = () => {
     memberCtx.postMember(memberObj, addressObj, "Normal");
   };
 
+  const [value, setValue] = React.useState(false);
+
+  const handleChange = () => {
+    setValue(!value);
+  };
+
   return (
     <Fragment>
       <h1 className={classes.title}>Add Members</h1>
@@ -48,34 +54,33 @@ const MemberForm = () => {
         <Input
           label="City:"
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: city,
-            onchange: (e) => setCity(e.target.value),
+            id: 'city',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'City',
           }}
         />
         <Input
           ref={countryInput}
           label="Country:"
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: "Country",
+            id: 'country',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'Country',
           }}
         />
         <Input
           ref={postalCodeInput}
           label="Postal Code:"
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "7",
-            placeholder: "Postal Code",
+            id: 'pcode',
+            type: 'text',
+            min: '1',
+            max: '7',
+            placeholder: 'Postal Code',
           }}
         />
 
@@ -84,11 +89,11 @@ const MemberForm = () => {
           ref={provinceInput}
           label="Province:"
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: "Province",
+            id: 'province',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'Province',
           }}
         />
 
@@ -96,11 +101,11 @@ const MemberForm = () => {
           ref={streetAdrInput}
           label="Street Address:"
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: "Street Address",
+            id: 'strAddr',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'Street Address',
           }}
         />
 
@@ -108,22 +113,22 @@ const MemberForm = () => {
           ref={emailInput}
           label="Email:"
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: "Email",
+            id: 'email',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'Email',
           }}
         />
         <Input
           ref={firstNameInput}
           label="First Name: "
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: "First Name",
+            id: 'fName',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'First Name',
           }}
         />
 
@@ -131,11 +136,11 @@ const MemberForm = () => {
           ref={lastNameInput}
           label="Last Name: "
           input={{
-            id: "name",
-            type: "text",
-            min: "1",
-            max: "255",
-            placeholder: "Last Name",
+            id: 'lName',
+            type: 'text',
+            min: '1',
+            max: '255',
+            placeholder: 'Last Name',
           }}
         />
 
@@ -143,24 +148,39 @@ const MemberForm = () => {
           ref={joinDateInput}
           label="Join Date"
           input={{
-            id: "enddate",
-            type: "date",
+            id: 'joinDate',
+            type: 'date',
           }}
         />
 
         {/* Membership */}
-
-        <Input
-          ref={membershipInput}
-          label="Membership: "
-          input={{
-            id: "name",
-            type: "radio",
-            min: "1",
-            max: "255",
-            placeholder: "Normal",
-          }}
-        />
+        <div>
+          <h3>Membership Type:</h3>
+          <input
+            ref={membershipInput}
+            type='radio'
+            name='memType'
+            value='Normal'
+            onChange={(e) => setValue(e.target.value)}
+          />{' '}
+          Normal
+          <input
+            ref={membershipInput}
+            type='radio'
+            name='memType'
+            value='Premium'
+            onChange={(e) => setValue(e.target.value)}
+          />{' '}
+          Premium
+          <input
+            ref={membershipInput}
+            type='radio'
+            name='memType'
+            value='Premium'
+            onChange={(e) => setValue(e.target.value)}
+          />{' '}
+          Trial
+        </div>
 
         <button>Submit</button>
       </form>
