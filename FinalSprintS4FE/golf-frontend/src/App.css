@@ -1,6 +1,9 @@
-.App {
+/* .App {
   text-align: center;
-}
+  background: url("https://source.unsplash.com/WHf1wtNMMLU/1920x1340");
+  background-size: cover;
+  background-repeat: no-repeat; 
+} */
 
 .App-logo {
   height: 40vmin;
@@ -74,6 +77,6 @@ footer h5 {
 
 nav h1 {
   z-index: 0;
-  font-family: 'Hanalei Fill', cursive;
+  font-family: "Hanalei Fill", cursive;
   font-size: 3rem;
 }

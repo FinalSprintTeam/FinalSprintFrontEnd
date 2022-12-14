@@ -21,17 +21,6 @@ function App() {
     tourCtx.getTournament();
   }, []);
 
-  // Data Fetching
-  // const getMemberData = async () => {
-  //   const memberData = await getData("/api/member/all");
-  //   setMembers(memberData);
-  // };
-
-  // const getTournamentData = async() =>{
-  //   const tournamentData = await getData("/api/tournament/all");
-  //   setTournaments(tournamentData);
-  // };
-
   return (
     <Fragment>
       <header>

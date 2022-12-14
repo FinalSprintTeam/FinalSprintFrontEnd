@@ -16,7 +16,6 @@ const TournamentForum = (props) => {
   const endDateValue = props.valueEndDate;
   const locationValue = props.valueLocation;
   const entryFeeValue = props.valueEntryFee;
-  
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -28,10 +27,10 @@ const TournamentForum = (props) => {
       location: locationInput.current.value,
       entryFee: entryFeeInput.current.value,
     };
-    
-    props.editCheck ? tourCtx.updateTournament(tournamentObj) : tourCtx.postTournament(tournamentObj);
-    
-    
+
+    props.editCheck
+      ? tourCtx.updateTournament(tournamentObj)
+      : tourCtx.postTournament(tournamentObj);
   };
 
   return (
@@ -47,8 +46,7 @@ const TournamentForum = (props) => {
             min: "1",
             max: "255",
             placeholder: "Tournament Name",
-            defaultValue: nameValue
-          
+            defaultValue: nameValue,
           }}
         />
 
@@ -58,8 +56,7 @@ const TournamentForum = (props) => {
           input={{
             id: "startdate",
             type: "date",
-            defaultValue: startDateValue
-            
+            defaultValue: startDateValue,
           }}
         />
 
@@ -69,7 +66,7 @@ const TournamentForum = (props) => {
           input={{
             id: "enddate",
             type: "date",
-            defaultValue: endDateValue
+            defaultValue: endDateValue,
           }}
         />
 
@@ -82,8 +79,7 @@ const TournamentForum = (props) => {
             min: "1",
             max: "255",
             placeholder: "Tournament Location",
-            defaultValue: locationValue
-          
+            defaultValue: locationValue,
           }}
         />
 
@@ -97,7 +93,7 @@ const TournamentForum = (props) => {
             min: "1",
             max: "100000",
             step: "1",
-            defaultValue: entryFeeValue 
+            defaultValue: entryFeeValue,
           }}
         />
         <button>Submit</button>
