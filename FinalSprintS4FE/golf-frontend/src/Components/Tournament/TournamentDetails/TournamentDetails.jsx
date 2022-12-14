@@ -6,6 +6,7 @@ import btnCss from "../../../UI/Button.module.css"
 import { MdUpdate , MdDelete, MdPeople } from "react-icons/md";
 import {FaListAlt} from "react-icons/fa"
 import Button from '../../../UI/Button';
+import Block from '../../../UI/Block';
 const TournamentDetails = () => {
 // tournament store
   const tourCtx = useContext(TournamentContext);
@@ -66,15 +67,17 @@ const buttonGroup = (
   </div>
 )
   return (
-    <div className='container'>
+    <Block>
+    <div>
       <Header  
        title = {tourCtx.currentTournament.name}
        button = {buttonGroup}
+       url = "https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
       >
-      </Header>
-      
-   
+      </Header>           
     </div>
+    </Block>
+   
   )
 }
 

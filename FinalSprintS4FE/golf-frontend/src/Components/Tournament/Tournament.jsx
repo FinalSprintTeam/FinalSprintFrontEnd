@@ -69,14 +69,18 @@ const Tournament = ({}) => {
 
   return (
     <Fragment>
+      
       <Block>
+        
         <Header title="Tournaments" button={buttonGroup} url = "https://source.unsplash.com/WHf1wtNMMLU/1920x1340" />
         {showTable && tournamentItems}
 
         {showForum && <TournamentForm 
         displayTable = {onViewTournamentClick}
          />}
+        
       </Block>
+      
     </Fragment>
   );
 };
