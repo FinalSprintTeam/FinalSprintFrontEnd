@@ -6,6 +6,7 @@ import Tournament from "./Components/Tournament/Tournament";
 import Main from "./Components/Main/Main";
 import NotFound from "./Components/Main/notFound";
 import { Fragment, useEffect, useState, useContext } from "react";
+import Block from "./UI/Block";
 import { Routes, Route } from "react-router-dom";
 import { getData } from "./api/services/getData";
 import TournamentContext from "./Components/Context/tournament-context";
@@ -28,12 +29,14 @@ function App() {
       </header>
 
       <main className="App">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/members" element={<Member />} />
-          <Route path="/tournaments/*" element={<TournamentRoutes />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Block>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/members" element={<Member />} />
+            <Route path="/tournaments/*" element={<TournamentRoutes />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Block>
       </main>
 
       <footer>

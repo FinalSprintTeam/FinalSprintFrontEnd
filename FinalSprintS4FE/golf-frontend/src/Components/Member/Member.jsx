@@ -61,12 +61,12 @@ const Member = ({}) => {
 
   return (
     <Fragment>
-      <Block>
-        <Header title="Members" button={buttonGroup} />
-        {showTable && memberItems}
+      {/* <Block> */}
+      <Header title="Members" button={buttonGroup} />
+      {showTable && memberItems}
 
-        {showForum && <MemberForm />}
-      </Block>
+      {showForum && <MemberForm />}
+      {/* </Block> */}
     </Fragment>
   );
 };

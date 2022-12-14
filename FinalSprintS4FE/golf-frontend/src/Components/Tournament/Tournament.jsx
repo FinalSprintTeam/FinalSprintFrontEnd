@@ -42,7 +42,7 @@ const Tournament = ({}) => {
   };
 
   const tournamentItems = (
-    <ul className={styles["tournament-items"]}>
+    <div className={styles["tournament-items"]}>
       {tournamentData.map((tournament) => (
         <TournamentItem
           id={tournament.id}
@@ -50,7 +50,7 @@ const Tournament = ({}) => {
           onSelection={onSelection}
         />
       ))}
-    </ul>
+    </div>
   );
 
   const buttonGroup = (
@@ -72,17 +72,16 @@ const Tournament = ({}) => {
 
   return (
     <Fragment>
-      <Block>
-        <Header
-          title="Tournaments"
-          button={buttonGroup}
-          url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
-        />
-        
-        {showTable &&  <BackGround>{tournamentItems}</BackGround>}
+      {/* <Block> */}
+      <Header
+        title="Tournaments"
+        button={buttonGroup}
+        url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
+      />
+      <BackGround>
+        {showTable && tournamentItems}
 
         {showForum && (
-          <BackGround>
           <TournamentForm
             displayTable={onViewTournamentClick}
             title="Add Tournament"
@@ -93,9 +92,9 @@ const Tournament = ({}) => {
             valueEntryFee=""
             editCheck={false}
           />
-          </BackGround>
         )}
-      </Block>
+      </BackGround>
+      {/* </Block> */}
     </Fragment>
   );
 };

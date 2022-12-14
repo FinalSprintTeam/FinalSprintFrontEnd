@@ -4,11 +4,10 @@
   font-size: 0.75rem;
   padding: 0.5rem 2rem;
   white-space: nowrap;
-  
 }
 
-.title{
-color: #fff;
+.title {
+  color: #fff;
 }
 
 .badge--primary {
@@ -17,28 +16,18 @@ color: #fff;
 }
 
 .grid {
-    display: grid;
+  display: grid;
+}
+
+@media screen and (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
   }
+}
 
-
-  @media screen and (min-width: 768px) {
-    .grid {
-      grid-template-columns: repeat(4, 1fr);
-      position:relative;
-      
-      
-    }
+@media screen and (min-width: 1024px) {
+  .badge {
+    font-size: 1.3rem;
   }
-
-  @media screen and (min-width: 1024px) {
-    .badge {
-      font-size: 1.3rem;
-    }
-    
-  }
- 
-
-
-
-
- 
+}
