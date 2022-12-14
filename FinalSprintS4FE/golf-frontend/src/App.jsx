@@ -5,29 +5,22 @@ import Member from "./Components/Member/Member";
 import Tournament from "./Components/Tournament/Tournament";
 import Main from "./Components/Main/Main";
 import NotFound from "./Components/Main/notFound";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
+import Block from "./UI/Block";
 import { Routes, Route } from "react-router-dom";
 import { getData } from "./api/services/getData";
+import TournamentContext from "./Components/Context/tournament-context";
+import TournamentRoutes from "./Components/Tournament/TournamentRoutes";
+import MemberContext from "./Components/Context/member-context";
 
 function App() {
-  const [members, setMembers] = useState([]);
-  const [tournaments, setTournaments] = useState([]);
+  const tourCtx = useContext(TournamentContext);
+  const memCtx = useContext(MemberContext);
 
   useEffect(() => {
-    getMemberData();
-    getTournamentData();
+    memCtx.getMember();
+    tourCtx.getTournament();
   }, []);
-
-  // Data Fetching
-  const getMemberData = async () => {
-    const memberData = await getData("/api/member/all");
-    setMembers(memberData);
-  };
-
-  const getTournamentData = async() =>{
-    const tournamentData = await getData("/api/tournament/all");
-    setTournaments(tournamentData);
-  };
 
   return (
     <Fragment>
@@ -36,12 +29,14 @@ function App() {
       </header>
 
       <main className="App">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/members" element={<Member memberData = {members}/>} />
-          <Route path="/tournaments" element={<Tournament tournamentData = {tournaments} />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Block>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/members" element={<Member />} />
+            <Route path="/tournaments/*" element={<TournamentRoutes />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Block>
       </main>
 
       <footer>

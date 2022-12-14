@@ -9,7 +9,16 @@
     rgba(13, 110, 253, 1) 50%,
     rgba(202, 240, 248, 1) 100%
   );
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  transform: rotateZ(-1deg) translateY(0rem) translateX(0.25rem);
+  height: 100%;
+  margin: 0.5% auto;
+  /* transform: rotateZ(0deg) translateY(0rem) translateX(0.25rem); */
+}
+
+.backgroundImg {
+  background-image: url("https://source.unsplash.com/WHf1wtNMMLU/1920x1340");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 14px;
 }
