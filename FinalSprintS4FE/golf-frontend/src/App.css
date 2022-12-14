@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  flex-grow: 1;
+  /* height: 100vh; */
 }
 
 .App-logo {
@@ -48,6 +50,10 @@ body,
   flex-direction: column;
 }
 
+/* main {
+  height: 100vh;
+} */
+
 /* Footer */
 
 footer {
@@ -74,6 +80,6 @@ footer h5 {
 
 nav h1 {
   z-index: 0;
-  font-family: 'Hanalei Fill', cursive;
+  font-family: "Hanalei Fill", cursive;
   font-size: 3rem;
 }

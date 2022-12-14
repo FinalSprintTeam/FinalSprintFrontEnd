@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import Logo from "./images/logo.png";
+import Card from "../../UI/Card";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function NavBar() {
             height="80rem"
             className="d-inline-block align-text-centre me-4 rounded-1 "
           />
+
           <h1 className="d-inline">Happy Gilmore Fairway</h1>
         </Link>
         <button

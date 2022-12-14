@@ -10,9 +10,10 @@ import styles from "./TournamentItem.module.css";
 import Card from "../../UI/Card";
 import TournamentItem from "./TournamentItem";
 import TournamentForm from "./TournamentForm";
-import { useContext} from "react";
+import { useContext } from "react";
 import TournamentContext from "../Context/tournament-context";
 import { useNavigate } from "react-router-dom";
+import BackGround from "../../UI/Background";
 
 const Tournament = ({}) => {
   const [showTable, setShowTable] = useState(true);
@@ -33,54 +34,67 @@ const Tournament = ({}) => {
   };
 
   const navigate = useNavigate();
-  const goToTournamentDetail = (id) => navigate(`/tournaments/${id}/detail`)
-  
-  const onSelection = (id) =>{
-    tourCtx.setCurrentId(id)
-    goToTournamentDetail(id)
+  const goToTournamentDetail = (id) => navigate(`/tournaments/${id}/detail`);
 
-  }
+  const onSelection = (id) => {
+    tourCtx.setCurrentId(id);
+    goToTournamentDetail(id);
+  };
 
   const tournamentItems = (
-    <ul className={styles['tournament-items']}>
+    <div className={styles["tournament-items"]}>
       {tournamentData.map((tournament) => (
-        <TournamentItem id={tournament.id} name={tournament.name} onSelection = {onSelection} />
+        <TournamentItem
+          id={tournament.id}
+          name={tournament.name}
+          onSelection={onSelection}
+        />
       ))}
-    </ul>
+    </div>
   );
 
   const buttonGroup = (
     <div className={classes.btnContainer}>
       <Button
-        label='Add Tournament'
+        label="Add Tournament"
         style={classes}
         icon={iconAdd}
         handleClick={onAddTournamentClick}
       />
       <Button
-        label='View Tournaments'
+        label="View Tournaments"
         style={classes}
         icon={iconView}
         handleClick={onViewTournamentClick}
       />
-      
     </div>
   );
 
   return (
     <Fragment>
-      
-      <Block>
-        
-        <Header title="Tournaments" button={buttonGroup} url = "https://source.unsplash.com/WHf1wtNMMLU/1920x1340" />
+      {/* <Block> */}
+      <Header
+        title="Tournaments"
+        button={buttonGroup}
+        url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
+      />
+      <BackGround>
         {showTable && tournamentItems}
 
-        {showForum && <TournamentForm 
-        displayTable = {onViewTournamentClick}
-         />}
-        
-      </Block>
-      
+        {showForum && (
+          <TournamentForm
+            displayTable={onViewTournamentClick}
+            title="Add Tournament"
+            valueName=""
+            valueStartDate=""
+            valueEndDate=""
+            valueLocation=""
+            valueEntryFee=""
+            editCheck={false}
+          />
+        )}
+      </BackGround>
+      {/* </Block> */}
     </Fragment>
   );
 };

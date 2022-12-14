@@ -12,12 +12,12 @@ import MemberItem from "./MemberItem";
 import MemberForm from "./MemberForm";
 import { useContext } from "react";
 import MemberContext from "../Context/member-context";
+import BackGround from "../../UI/Background";
 
 const Member = ({}) => {
-  const [showTable, setShowTable] = useState(false);
+  const [showTable, setShowTable] = useState(true);
   const [showForum, setShowForum] = useState(false);
   const memberCtx = useContext(MemberContext);
-  console.log(memberCtx);
   const memberData = memberCtx.members;
   const iconAdd = <IoIosAddCircle />;
   const iconView = <MdViewList />;
@@ -33,14 +33,14 @@ const Member = ({}) => {
   };
 
   const memberItems = (
-    <ul className={styles["member-items"]}>
+    <div className={styles["member-items"]}>
       {memberData.map((member) => (
         <MemberItem
           id={member.id}
           name={`${member.firstName} ${member.lastName}`}
         />
       ))}
-    </ul>
+    </div>
   );
 
   const buttonGroup = (
@@ -62,12 +62,13 @@ const Member = ({}) => {
 
   return (
     <Fragment>
-      <Block>
-        <Header title="Members" button={buttonGroup} />
+      <Header title="Members" button={buttonGroup} />
+
+      <BackGround>
         {showTable && memberItems}
 
         {showForum && <MemberForm />}
-      </Block>
+      </BackGround>
     </Fragment>
   );
 };
