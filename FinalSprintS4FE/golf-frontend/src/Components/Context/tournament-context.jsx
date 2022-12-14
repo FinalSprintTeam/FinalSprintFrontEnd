@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { postTournament } from "../../api/services/tournament/postTournament";
 import { putTournament } from "../../api/services/tournament/putTournament";
+import { deleteTournament } from "../../api/services/tournament/deleteTournament";
 import { getData } from "../../api/services/getData";
 import { useMemo } from "react";
 
@@ -8,6 +9,7 @@ const TournamentContext = React.createContext({
   getTournament: (api) => {},
   postTournament: (tournament) => {},
   updateTournament: (tournament) => {},
+  deleteTournament: (id) => {},
   tournaments: [],
   currentTournament: () => {},
   setCurrentId: (id) => {},
@@ -48,10 +50,16 @@ export const TournamentContextProvider = (props) => {
     setCurrentId(tournamentToUpdate.id);
   };
 
+  const deleteTournamentHandler = (id) => {
+    deleteTournament(id);
+    setTournaments(tournaments.filter((tournament) => tournament.id !== id));
+  };
+
   const contextValue = {
     getTournament: getTournamentHandler,
     postTournament: postTournamentHandler,
     updateTournament: updateTournament,
+    deleteTournament: deleteTournamentHandler,
     tournaments: tournaments,
     currentTournament: currentTournament,
     setCurrentId: setCurrentId,
