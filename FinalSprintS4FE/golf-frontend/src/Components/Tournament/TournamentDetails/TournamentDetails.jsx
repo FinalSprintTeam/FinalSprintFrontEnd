@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import TournamentContext from '../../Context/tournament-context';
 import classes from './TournamentDetails.module.css';
 import Header from '../../Layout/Header';
@@ -7,9 +7,14 @@ import { MdUpdate , MdDelete, MdPeople } from "react-icons/md";
 import {FaListAlt} from "react-icons/fa"
 import Button from '../../../UI/Button';
 import Block from '../../../UI/Block';
+import TournamentDetailsBody from './TournamentDetailsBody';
+import TournamentForum from '../TournamentForm';
+
 const TournamentDetails = () => {
 // tournament store
   const tourCtx = useContext(TournamentContext);
+
+  const [showDetails, setShowDetails] = useState(true)
 // icons
 const iconUpdate = <MdUpdate />;
 const iconDelete = <MdDelete/>
@@ -74,7 +79,32 @@ const buttonGroup = (
        button = {buttonGroup}
        url = "https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
       >
-      </Header>           
+      </Header>  
+      <div className='container'>
+
+     {showDetails && 
+      <TournamentDetailsBody 
+      startDate = {`Start Date: ${tourCtx.currentTournament.startDate}`}
+      endDate = {`End Date: ${tourCtx.currentTournament.endDate}`}
+      location = {`Location: ${tourCtx.currentTournament.location}`}
+      entryFee = {`Entry Fee: $${tourCtx.currentTournament.entryFee}`}
+      />
+     }
+      </div>
+
+      <TournamentForum
+      displayTable = {onUpdateTournament}
+      title = "Update Tournament"
+      valueName = {tourCtx.currentTournament.name}
+      valueStartDate = {tourCtx.currentTournament.startDate}
+      valueEndDate = {tourCtx.currentTournament.endDate}
+      valueLocation = {tourCtx.currentTournament.location}
+      valueEntryFee = {tourCtx.currentTournament.entryFee}
+      editCheck = {true}
+      />
+
+      
+               
     </div>
     </Block>
    
