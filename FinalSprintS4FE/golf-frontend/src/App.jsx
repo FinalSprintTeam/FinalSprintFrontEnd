@@ -9,6 +9,7 @@ import { Fragment, useEffect, useState, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getData } from "./api/services/getData";
 import TournamentContext from "./Components/Context/tournament-context";
+import TournamentRoutes from "./Components/Tournament/TournamentRoutes"
 
 function App() {
   const [members, setMembers] = useState([]);
@@ -40,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/members" element={<Member memberData={members} />} />
-          <Route path="/tournaments" element={<Tournament />} />
+          <Route path="/tournaments/*" element={<TournamentRoutes/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

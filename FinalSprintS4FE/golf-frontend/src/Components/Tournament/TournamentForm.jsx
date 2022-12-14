@@ -3,7 +3,7 @@ import React, { useRef, useState, Fragment, useContext } from "react";
 import Input from "../../UI/Input";
 import TournamentContext from "../Context/tournament-context";
 
-const Forum = () => {
+const TournamentForum = (props) => {
   const entryFeeInput = useRef();
   const nameInput = useRef();
   const startDateInput = useRef();
@@ -13,7 +13,7 @@ const Forum = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
+    props.displayTable();
     const tournamentObj = {
       name: nameInput.current.value,
       startDate: startDateInput.current.value,
@@ -21,7 +21,8 @@ const Forum = () => {
       location: locationInput.current.value,
       entryFee: entryFeeInput.current.value,
     };
-
+    
+  
     tourCtx.postTournament(tournamentObj);
   };
 
@@ -90,4 +91,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default TournamentForum;

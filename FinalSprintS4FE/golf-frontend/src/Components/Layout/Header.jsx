@@ -1,7 +1,7 @@
 import {Fragment} from 'react'
 import classes from "./Header.module.css"
 
- const Header = ({title , button}) => {
+ const Header = ({title , button , url}) => {
   return (
     <Fragment>
         <header className={classes.header}>
@@ -10,7 +10,7 @@ import classes from "./Header.module.css"
 
         </header>
         <div className={classes["main-image"]}>
-        <img src= "https://source.unsplash.com/WHf1wtNMMLU/1920x1340" alt="picture of a gofl ball and pin" />
+        <img src= {url} alt="picture of a golf tournament or left blank" />
       </div>
     </Fragment>
     
