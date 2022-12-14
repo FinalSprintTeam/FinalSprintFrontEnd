@@ -11,6 +11,13 @@ const TournamentForum = (props) => {
   const locationInput = useRef();
   const tourCtx = useContext(TournamentContext);
 
+  const nameValue = props.valueName;
+  const startDateValue = props.valueStartDate;
+  const endDateValue = props.valueEndDate;
+  const locationValue = props.valueLocation;
+  const entryFeeValue = props.valueEntryFee;
+  
+
   const submitHandler = (event) => {
     event.preventDefault();
     props.displayTable();
@@ -22,13 +29,14 @@ const TournamentForum = (props) => {
       entryFee: entryFeeInput.current.value,
     };
     
-  
-    tourCtx.postTournament(tournamentObj);
+    props.editCheck ? tourCtx.updateTournament(tournamentObj) : tourCtx.postTournament(tournamentObj);
+    
+    
   };
 
   return (
     <Fragment>
-      <h1 className={classes.title}>Add Tournament</h1>
+      <h1 className={classes.title}>{props.title}</h1>
       <form className={classes.form} onSubmit={submitHandler}>
         <Input
           ref={nameInput}
@@ -39,6 +47,8 @@ const TournamentForum = (props) => {
             min: "1",
             max: "255",
             placeholder: "Tournament Name",
+            defaultValue: nameValue
+          
           }}
         />
 
@@ -48,6 +58,8 @@ const TournamentForum = (props) => {
           input={{
             id: "startdate",
             type: "date",
+            defaultValue: startDateValue
+            
           }}
         />
 
@@ -57,6 +69,7 @@ const TournamentForum = (props) => {
           input={{
             id: "enddate",
             type: "date",
+            defaultValue: endDateValue
           }}
         />
 
@@ -69,6 +82,8 @@ const TournamentForum = (props) => {
             min: "1",
             max: "255",
             placeholder: "Tournament Location",
+            defaultValue: locationValue
+          
           }}
         />
 
@@ -82,7 +97,7 @@ const TournamentForum = (props) => {
             min: "1",
             max: "100000",
             step: "1",
-            defaultValue: "1",
+            defaultValue: entryFeeValue 
           }}
         />
         <button>Submit</button>

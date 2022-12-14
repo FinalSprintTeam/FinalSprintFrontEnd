@@ -77,6 +77,13 @@ const Tournament = ({}) => {
 
         {showForum && <TournamentForm 
         displayTable = {onViewTournamentClick}
+        title = "Add Tournament"
+        valueName = ""
+        valueStartDate = ""
+        valueEndDate = ""
+        valueLocation = ""
+        valueEntryFee = ""
+        editCheck = {false}
          />}
         
       </Block>
