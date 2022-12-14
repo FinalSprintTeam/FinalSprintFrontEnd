@@ -8,9 +8,9 @@ const Header = ({ title, button, url }) => {
         <h1>{title}</h1>
         {button}
       </header>
-      <div className={classes["main-image"]}>
+      {/* <div className={classes["main-image"]}>
         <img src={url} alt="picture of a golf tournament or left blank" />
-      </div>
+      </div> */}
     </Fragment>
   );
 };

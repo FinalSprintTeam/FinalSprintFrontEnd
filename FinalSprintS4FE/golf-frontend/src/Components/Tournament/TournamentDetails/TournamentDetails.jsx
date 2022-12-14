@@ -21,7 +21,7 @@ const TournamentDetails = () => {
 
   const [showDetails, setShowDetails] = useState(true);
   const [showUpdateTournament, setShowUpdateTournament] = useState(false);
-  
+
   // icons
   const iconUpdate = <MdUpdate />;
   const iconDelete = <MdDelete />;
@@ -33,10 +33,10 @@ const TournamentDetails = () => {
     setShowDetails(false);
   };
 
-  const displayDetails = () =>{
+  const displayDetails = () => {
     setShowDetails(true);
     setShowUpdateTournament(false);
-  }
+  };
 
   const onDeleteTournament = () => {
     tourCtx.deleteTournament(tourCtx.currentTournament.id);
@@ -78,46 +78,46 @@ const TournamentDetails = () => {
     </div>
   );
   return (
-    <Block>
+    <>
       {tourCtx.currentTournament && (
         <div>
           <Header
-            title= "Tournament Details"
+            title="Tournament Details"
             button={buttonGroup}
             url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
           ></Header>
-          <div className="container">
+          <BackGround>
             {showDetails && (
-              <BackGround>
-              <TournamentDetailsBody
-                name ={tourCtx.currentTournament.name}
-                startDate={`Start Date: ${tourCtx.currentTournament.startDate}`}
-                endDate={`End Date: ${tourCtx.currentTournament.endDate}`}
-                location={`Location: ${tourCtx.currentTournament.location}`}
-                entryFee={`Entry Fee: $${tourCtx.currentTournament.entryFee}`}
-              />
-              <TournamentMemberDetails
-              memebers = {tourCtx.currentTournament.memebers} 
-              />
-              </BackGround>
+              <>
+                <TournamentDetailsBody
+                  name={tourCtx.currentTournament.name}
+                  startDate={`Start Date: ${tourCtx.currentTournament.startDate}`}
+                  endDate={`End Date: ${tourCtx.currentTournament.endDate}`}
+                  location={`Location: ${tourCtx.currentTournament.location}`}
+                  entryFee={`Entry Fee: $${tourCtx.currentTournament.entryFee}`}
+                />
+                <TournamentMemberDetails
+                  memebers={tourCtx.currentTournament.memebers}
+                />
+              </>
             )}
-          </div>
-           {showUpdateTournament && 
-           <BackGround>
-           <TournamentForum
-            displayTable={displayDetails}
-            title="Update Tournament"
-            valueName={tourCtx.currentTournament.name}
-            valueStartDate={tourCtx.currentTournament.startDate}
-            valueEndDate={tourCtx.currentTournament.endDate}
-            valueLocation={tourCtx.currentTournament.location}
-            valueEntryFee={tourCtx.currentTournament.entryFee}
-            editCheck={true}
-          /> </BackGround>}   
-          
+
+            {showUpdateTournament && (
+              <TournamentForum
+                displayTable={displayDetails}
+                title="Update Tournament"
+                valueName={tourCtx.currentTournament.name}
+                valueStartDate={tourCtx.currentTournament.startDate}
+                valueEndDate={tourCtx.currentTournament.endDate}
+                valueLocation={tourCtx.currentTournament.location}
+                valueEntryFee={tourCtx.currentTournament.entryFee}
+                editCheck={true}
+              />
+            )}
+          </BackGround>
         </div>
       )}
-    </Block>
+    </>
   );
 };
 
