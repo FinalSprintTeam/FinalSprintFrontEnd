@@ -1,13 +1,16 @@
 import React from "react";
 import classes from "./TournamentDetailsBody.module.css";
 import Card from "../../../UI/Card";
-
-function TournamentDetailsBody({ startDate, endDate, location, entryFee }) {
+import BackGround from "../../../UI/Background";
+function TournamentDetailsBody({ startDate, endDate, location, entryFee, name }) {
   return (
-    <div className={classes.body}>
+    <BackGround>
+    <h1 className={classes.title}>{name}</h1>
+        
       <div className={classes.grid}>
-        <Card>
-          <div className={classes.body}>
+
+       
+          
             <h2>
               {" "}
               <span className={`${classes.badge} ${classes["badge--primary"]}`}>
@@ -20,10 +23,7 @@ function TournamentDetailsBody({ startDate, endDate, location, entryFee }) {
                 {endDate}
               </span>
             </h2>
-          </div>
-        </Card>
-        <Card>
-          <div className={classes.body}>
+          
             <h2>
               {" "}
               <span className={`${classes.badge} ${classes["badge--primary"]}`}>
@@ -36,10 +36,10 @@ function TournamentDetailsBody({ startDate, endDate, location, entryFee }) {
                 {entryFee}
               </span>
             </h2>
-          </div>
-        </Card>
+           
+       
       </div>
-    </div>
+      </BackGround>
   );
 }
 

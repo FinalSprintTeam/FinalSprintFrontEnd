@@ -13,6 +13,7 @@ import TournamentForm from "./TournamentForm";
 import { useContext } from "react";
 import TournamentContext from "../Context/tournament-context";
 import { useNavigate } from "react-router-dom";
+import BackGround from "../../UI/Background";
 
 const Tournament = ({}) => {
   const [showTable, setShowTable] = useState(true);
@@ -77,9 +78,11 @@ const Tournament = ({}) => {
           button={buttonGroup}
           url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
         />
-        {showTable && tournamentItems}
+        
+        {showTable &&  <BackGround>{tournamentItems}</BackGround>}
 
         {showForum && (
+          <BackGround>
           <TournamentForm
             displayTable={onViewTournamentClick}
             title="Add Tournament"
@@ -90,6 +93,7 @@ const Tournament = ({}) => {
             valueEntryFee=""
             editCheck={false}
           />
+          </BackGround>
         )}
       </Block>
     </Fragment>
