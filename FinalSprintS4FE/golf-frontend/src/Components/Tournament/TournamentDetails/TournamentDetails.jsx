@@ -9,21 +9,38 @@ import Button from "../../../UI/Button";
 import Block from "../../../UI/Block";
 import TournamentDetailsBody from "./TournamentDetailsBody";
 import TournamentForum from "../TournamentForm";
+import { useNavigate } from "react-router-dom";
 
 const TournamentDetails = () => {
   // tournament store
   const tourCtx = useContext(TournamentContext);
+  const navigate = useNavigate();
+  const goToTournamentList = () => navigate("/tournaments");
 
   const [showDetails, setShowDetails] = useState(true);
+  const [showUpdateTournament, setShowUpdateTournament] = useState(false);
+  
   // icons
   const iconUpdate = <MdUpdate />;
   const iconDelete = <MdDelete />;
   const iconPeople = <MdPeople />;
   const iconScore = <FaListAlt />;
 
-  const onUpdateTournament = () => {};
+  const onUpdateTournament = () => {
+    setShowUpdateTournament(true);
+    setShowDetails(false);
+  };
 
-  const onDeleteTournament = () => {};
+  const displayDetails = () =>{
+    setShowDetails(true);
+    setShowUpdateTournament(false);
+  }
+
+  const onDeleteTournament = () => {
+    tourCtx.deleteTournament(tourCtx.currentTournament.id);
+    // ADD A VALIDATION HERE - PROMPT "ARE YOU SURE?"
+    goToTournamentList();
+  };
 
   const onViewMembersByTournament = () => {};
 
@@ -63,13 +80,14 @@ const TournamentDetails = () => {
       {tourCtx.currentTournament && (
         <div>
           <Header
-            title={tourCtx.currentTournament.name}
+            title= "Tournament Details"
             button={buttonGroup}
             url="https://source.unsplash.com/WHf1wtNMMLU/1920x1340"
           ></Header>
           <div className="container">
             {showDetails && (
               <TournamentDetailsBody
+                name ={tourCtx.currentTournament.name}
                 startDate={`Start Date: ${tourCtx.currentTournament.startDate}`}
                 endDate={`End Date: ${tourCtx.currentTournament.endDate}`}
                 location={`Location: ${tourCtx.currentTournament.location}`}
@@ -77,9 +95,9 @@ const TournamentDetails = () => {
               />
             )}
           </div>
-
-          <TournamentForum
-            displayTable={onUpdateTournament}
+           {showUpdateTournament && 
+           <TournamentForum
+            displayTable={displayDetails}
             title="Update Tournament"
             valueName={tourCtx.currentTournament.name}
             valueStartDate={tourCtx.currentTournament.startDate}
@@ -87,7 +105,8 @@ const TournamentDetails = () => {
             valueLocation={tourCtx.currentTournament.location}
             valueEntryFee={tourCtx.currentTournament.entryFee}
             editCheck={true}
-          />
+          />}   
+          
         </div>
       )}
     </Block>
