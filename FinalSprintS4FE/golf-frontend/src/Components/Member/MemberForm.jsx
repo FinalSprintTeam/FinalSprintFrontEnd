@@ -1,9 +1,10 @@
-import classes from './MemberForm.module.css';
-import React, { useRef, useState, Fragment, useContext } from 'react';
-import Input from '../../UI/Input';
-import MemberContext from '../Context/member-context';
+import classes from "./MemberForm.module.css";
+import React, { useRef, useState, Fragment, useContext } from "react";
+import Input from "../../UI/Input";
+import MemberContext from "../Context/member-context";
 
-const Forum = () => {
+const MemberForm = () => {
+  const [city, setCity] = useState("");
   const cityInput = useRef();
   const countryInput = useRef();
   const postalCodeInput = useRef();
@@ -15,10 +16,6 @@ const Forum = () => {
   const joinDateInput = useRef();
   const lastNameInput = useRef();
 
-  const startDateInput = useRef();
-  const endDateInput = useRef();
-  const locationInput = useRef();
-
   const membershipInput = useRef();
 
   const memberCtx = useContext(MemberContext);
@@ -28,12 +25,20 @@ const Forum = () => {
 
     const memberObj = {
       firstName: firstNameInput.current.value,
-      startDate: startDateInput.current.value,
-      endDate: endDateInput.current.value,
-      location: locationInput.current.value,
+      joinDate: joinDateInput.current.value,
+      email: emailInput.current.value,
+      lastName: lastNameInput.current.value,
     };
 
-    // memberCtx.postMember(memberObj);
+    const addressObj = {
+      streetAddress: streetAdrInput.current.value,
+      city: streetAdrInput.current.value,
+      postalCode: streetAdrInput.current.value,
+      province: streetAdrInput.current.value,
+      country: streetAdrInput.current.value,
+    };
+
+    memberCtx.postMember(memberObj, addressObj, "Normal");
   };
 
   return (
@@ -41,105 +46,105 @@ const Forum = () => {
       <h1 className={classes.title}>Add Members</h1>
       <form className={classes.form} onSubmit={submitHandler}>
         <Input
-          ref={cityInput}
-          label='City:'
+          label="City:"
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'City',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: city,
+            onchange: (e) => setCity(e.target.value),
           }}
         />
         <Input
           ref={countryInput}
-          label='Country:'
+          label="Country:"
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Country',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: "Country",
           }}
         />
         <Input
           ref={postalCodeInput}
-          label='Postal Code:'
+          label="Postal Code:"
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '7',
-            placeholder: 'Postal Code',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "7",
+            placeholder: "Postal Code",
           }}
         />
 
         {/* Maybe dropdown radio*/}
         <Input
           ref={provinceInput}
-          label='Province:'
+          label="Province:"
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Province',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: "Province",
           }}
         />
 
         <Input
           ref={streetAdrInput}
-          label='Street Address:'
+          label="Street Address:"
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Street Address',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: "Street Address",
           }}
         />
 
         <Input
           ref={emailInput}
-          label='Email:'
+          label="Email:"
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Email',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: "Email",
           }}
         />
         <Input
           ref={firstNameInput}
-          label='First Name: '
+          label="First Name: "
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'First Name',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: "First Name",
           }}
         />
 
         <Input
           ref={lastNameInput}
-          label='Last Name: '
+          label="Last Name: "
           input={{
-            id: 'name',
-            type: 'text',
-            min: '1',
-            max: '255',
-            placeholder: 'Last Name',
+            id: "name",
+            type: "text",
+            min: "1",
+            max: "255",
+            placeholder: "Last Name",
           }}
         />
 
         <Input
           ref={joinDateInput}
-          label='Join Date'
+          label="Join Date"
           input={{
-            id: 'enddate',
-            type: 'date',
+            id: "enddate",
+            type: "date",
           }}
         />
 
@@ -147,13 +152,13 @@ const Forum = () => {
 
         <Input
           ref={membershipInput}
-          label='Membership: '
+          label="Membership: "
           input={{
-            id: 'name',
-            type: 'radio',
-            min: '1',
-            max: '255',
-            placeholder: 'Last Name',
+            id: "name",
+            type: "radio",
+            min: "1",
+            max: "255",
+            placeholder: "Normal",
           }}
         />
 
@@ -163,4 +168,4 @@ const Forum = () => {
   );
 };
 
-export default Forum;
+export default MemberForm;
