@@ -36,6 +36,12 @@ const Forum = () => {
     // memberCtx.postMember(memberObj);
   };
 
+  const [value, setValue] = React.useState(false);
+
+  const handleChange = () => {
+    setValue(!value);
+  };
+
   return (
     <Fragment>
       <h1 className={classes.title}>Add Members</h1>
@@ -44,7 +50,7 @@ const Forum = () => {
           ref={cityInput}
           label='City:'
           input={{
-            id: 'name',
+            id: 'city',
             type: 'text',
             min: '1',
             max: '255',
@@ -55,7 +61,7 @@ const Forum = () => {
           ref={countryInput}
           label='Country:'
           input={{
-            id: 'name',
+            id: 'country',
             type: 'text',
             min: '1',
             max: '255',
@@ -66,7 +72,7 @@ const Forum = () => {
           ref={postalCodeInput}
           label='Postal Code:'
           input={{
-            id: 'name',
+            id: 'pcode',
             type: 'text',
             min: '1',
             max: '7',
@@ -79,7 +85,7 @@ const Forum = () => {
           ref={provinceInput}
           label='Province:'
           input={{
-            id: 'name',
+            id: 'province',
             type: 'text',
             min: '1',
             max: '255',
@@ -91,7 +97,7 @@ const Forum = () => {
           ref={streetAdrInput}
           label='Street Address:'
           input={{
-            id: 'name',
+            id: 'strAddr',
             type: 'text',
             min: '1',
             max: '255',
@@ -103,7 +109,7 @@ const Forum = () => {
           ref={emailInput}
           label='Email:'
           input={{
-            id: 'name',
+            id: 'email',
             type: 'text',
             min: '1',
             max: '255',
@@ -114,7 +120,7 @@ const Forum = () => {
           ref={firstNameInput}
           label='First Name: '
           input={{
-            id: 'name',
+            id: 'fName',
             type: 'text',
             min: '1',
             max: '255',
@@ -126,7 +132,7 @@ const Forum = () => {
           ref={lastNameInput}
           label='Last Name: '
           input={{
-            id: 'name',
+            id: 'lName',
             type: 'text',
             min: '1',
             max: '255',
@@ -138,24 +144,39 @@ const Forum = () => {
           ref={joinDateInput}
           label='Join Date'
           input={{
-            id: 'enddate',
+            id: 'joinDate',
             type: 'date',
           }}
         />
 
         {/* Membership */}
-
-        <Input
-          ref={membershipInput}
-          label='Membership: '
-          input={{
-            id: 'name',
-            type: 'radio',
-            min: '1',
-            max: '255',
-            placeholder: 'Last Name',
-          }}
-        />
+        <div>
+          <h3>Membership Type:</h3>
+          <input
+            ref={membershipInput}
+            type='radio'
+            name='memType'
+            value='Normal'
+            onChange={(e) => setValue(e.target.value)}
+          />{' '}
+          Normal
+          <input
+            ref={membershipInput}
+            type='radio'
+            name='memType'
+            value='Premium'
+            onChange={(e) => setValue(e.target.value)}
+          />{' '}
+          Premium
+          <input
+            ref={membershipInput}
+            type='radio'
+            name='memType'
+            value='Premium'
+            onChange={(e) => setValue(e.target.value)}
+          />{' '}
+          Trial
+        </div>
 
         <button>Submit</button>
       </form>
