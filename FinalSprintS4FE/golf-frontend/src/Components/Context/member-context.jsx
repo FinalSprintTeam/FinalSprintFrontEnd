@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { postMember } from '../../api/services/member/postMember';
-import { deleteMember } from '../../api/services/member/deleteMember';
-import { putMember } from '../../api/services/member/putMember';
-import { getData } from '../../api/services/getData';
-import { useMemo } from 'react';
+import React, { useState } from "react";
+import { postMember } from "../../api/services/member/postMember";
+import { deleteMember } from "../../api/services/member/deleteMember";
+import { putMember } from "../../api/services/member/putMember";
+import { getData } from "../../api/services/getData";
+import { useMemo } from "react";
 
 const MemberContext = React.createContext({
   getMember: (api) => {},
@@ -25,7 +25,7 @@ export const MemberContextProvider = (props) => {
   );
 
   const getMemberHandler = async () => {
-    const memberData = await getData('/api/member/all');
+    const memberData = await getData("/api/member/all");
     setMembers(memberData);
   };
 
@@ -34,16 +34,16 @@ export const MemberContextProvider = (props) => {
     setMembers([...members, newMem]);
   };
 
-  const updateMember = async (member) => {
-    var memberToUpdate = { ...member, id: currentMember.id };
-    putMember(`/api/member/${memberToUpdate.id}/edit`, memberToUpdate);
+  const updateMember = async (memberToUpdate, address, memType) => {
+    var memberToUpdate = { ...memberToUpdate, id: currentMember.id };
+    const updatedMem = await putMember(memberToUpdate, address, memType);
 
     setMembers(
       members.map((member) =>
-        member.id === memberToUpdate.id ? memberToUpdate : member
+        member.id === updatedMem.id ? updatedMem : member
       )
     );
-    setCurrentId(memberToUpdate.id);
+    setCurrentId(updatedMem.id);
   };
 
   const deleteMemberHandler = (id) => {
