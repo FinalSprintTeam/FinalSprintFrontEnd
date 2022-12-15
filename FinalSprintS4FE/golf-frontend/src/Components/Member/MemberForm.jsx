@@ -20,22 +20,34 @@ const MemberForm = (props) => {
 
   const memberCtx = useContext(MemberContext);
 
-  const firstNameValue = props.valueFirstName;
-  const LastNameValue = props.valueLastName;
-  const emailValue = props.valueEmail;
-  const joinDateValue = props.valueJoinDate;
+  const firstNameValue = props.valueFirstName || '';
+  const LastNameValue = props.valueLastName || '';
+  const emailValue = props.valueEmail || '';
+  const joinDateValue = props.valueJoinDate || '';
 
-  const strAddrValue = props.valueStrAddr;
-  const cityValue = props.valueCity;
-  const provinceValue = props.valueProvince;
-  const postalValue = props.valuePostalCode;
-  const countryValue = props.valueCountry;
+  const strAddrValue = props.valueStrAddr || '';
+  const cityValue = props.valueCity || '';
+  const provinceValue = props.valueProvince || '';
+  const postalValue = props.valuePostalCode || '';
+  const countryValue = props.valueCountry || '';
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     // VALIDATIONS WILL GO HERE - IMPORTANT //
-
+    if (
+      firstName ||
+      lastName ||
+      email ||
+      joinDate ||
+      address ||
+      city ||
+      province ||
+      postal ||
+      country ||
+      membership === ''
+    ) {
+    }
     // End of validations
 
     // Create objects that match model for back-end
@@ -55,6 +67,10 @@ const MemberForm = (props) => {
     };
 
     memberCtx.postMember(memberObj, addressObj, membership);
+
+    props.editCheck
+      ? memberCtx.updateMember(memberObj, addressObj, membership)
+      : memberCtx.postMember(memberObj, addressObj, membership);
   };
 
   return (

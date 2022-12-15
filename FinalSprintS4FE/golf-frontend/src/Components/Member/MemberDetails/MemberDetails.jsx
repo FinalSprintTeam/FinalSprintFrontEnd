@@ -63,7 +63,7 @@ const MemberDetails = () => {
       {memberCtx.currentMember && (
         <div>
           <Header
-            title='Member Details'
+            title='Update Details'
             button={buttonGroup}
             url='https://source.unsplash.com/WHf1wtNMMLU/1920x1340'
           ></Header>
