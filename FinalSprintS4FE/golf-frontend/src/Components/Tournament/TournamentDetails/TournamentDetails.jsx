@@ -18,6 +18,7 @@ const TournamentDetails = () => {
   const tourCtx = useContext(TournamentContext);
   const navigate = useNavigate();
   const goToTournamentList = () => navigate("/tournaments");
+  const [membersList, setMemberList] = useState([tourCtx.currentTournament.members])
 
   const [showDetails, setShowDetails] = useState(true);
   const [showUpdateTournament, setShowUpdateTournament] = useState(false);
@@ -47,7 +48,9 @@ const TournamentDetails = () => {
 
   const onViewMembersByTournament = () => {};
 
-  const onViewTournamentResults = () => {};
+  const onViewTournament = () => {
+    goToTournamentList();
+  };
 
   const buttonGroup = (
     <div className={btnCss.btnContainer}>
@@ -65,16 +68,16 @@ const TournamentDetails = () => {
       />
 
       <Button
-        label="Participating Members"
+        label="Add Member"
         style={btnCss}
         icon={iconPeople}
         handleClick={onViewMembersByTournament}
       />
       <Button
-        label="Tournament Results"
+        label="View Tournaments"
         style={btnCss}
         icon={iconScore}
-        handleClick={onViewTournamentResults}
+        handleClick={onViewTournament}
       />
     </div>
   );
@@ -98,7 +101,7 @@ const TournamentDetails = () => {
             {showDetails && (
               <>
                 <TournamentMemberDetails
-                  memebers={tourCtx.currentTournament.memebers}
+                styles = {classes}
                 />
               </>
             )}
