@@ -37,7 +37,7 @@ const MemberDetails = () => {
 
   const onDeleteMember = () => {
     memberCtx.deleteMember(memberCtx.currentMember.id);
-    // ADD A VALIDATION HERE - PROMPT "ARE YOU SURE?"
+    // ADD validations - Y/N
 
     goToMemberList();
   };
