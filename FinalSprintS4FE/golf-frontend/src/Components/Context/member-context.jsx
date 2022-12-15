@@ -1,18 +1,27 @@
-import React, { useState } from "react";
-import { postMember } from "../../api/services/member/postMember";
-import { getData } from "../../api/services/getData";
+import React, { useState } from 'react';
+import { postMember } from '../../api/services/member/postMember';
+import { getData } from '../../api/services/getData';
+import { useMemo } from 'react';
 
 const MemberContext = React.createContext({
   getMember: (api) => {},
   postMember: (member) => {},
+  currentMember: () => {},
+  setCurrentId: (id) => {},
   members: [],
 });
 
 export const MemberContextProvider = (props) => {
   const [members, setMembers] = useState([]);
+  const [currentId, setCurrentId] = useState(false);
+
+  const currentMember = useMemo(
+    () => members.find((member) => member.id === currentId),
+    [members, currentId]
+  );
 
   const getMemberHandler = async () => {
-    const memberData = await getData("/api/member/all");
+    const memberData = await getData('/api/member/all');
     setMembers(memberData);
   };
 
@@ -25,6 +34,8 @@ export const MemberContextProvider = (props) => {
     getMember: getMemberHandler,
     postMember: postMemberHandler,
     members: members,
+    currentMember: currentMember,
+    setCurrentId: setCurrentId,
   };
   return (
     <MemberContext.Provider value={contextValue}>
