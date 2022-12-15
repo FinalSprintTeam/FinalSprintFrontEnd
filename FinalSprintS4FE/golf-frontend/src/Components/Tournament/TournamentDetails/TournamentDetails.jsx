@@ -8,17 +8,21 @@ import { FaListAlt } from "react-icons/fa";
 import Button from "../../../UI/Button";
 import Block from "../../../UI/Block";
 import TournamentDetailsBody from "./TournamentDetailsBody";
-import TournamentForum from "../TournamentForm";
+import TournamentForm from "../TournamentForm";
 import { useNavigate } from "react-router-dom";
 import TournamentMemberDetails from "./TournamentMemberDetails";
 import BackGround from "../../../UI/Background";
+import AddMemberToTournament from "./AddMemberToTournament";
+import Select from "../../../UI/Select";
 
 const TournamentDetails = () => {
   // tournament store
   const tourCtx = useContext(TournamentContext);
   const navigate = useNavigate();
   const goToTournamentList = () => navigate("/tournaments");
-  const [membersList, setMemberList] = useState([tourCtx.currentTournament.members])
+  // const [membersList, setMemberList] = useState([
+  //   tourCtx.currentTournament.members,
+  // ]);
 
   const [showDetails, setShowDetails] = useState(true);
   const [showUpdateTournament, setShowUpdateTournament] = useState(false);
@@ -100,14 +104,15 @@ const TournamentDetails = () => {
             />
             {showDetails && (
               <>
-                <TournamentMemberDetails
-                styles = {classes}
-                />
+                <hr />
+                <TournamentMemberDetails styles={classes} />
+                <hr />
+                <AddMemberToTournament />
               </>
             )}
 
             {showUpdateTournament && (
-              <TournamentForum
+              <TournamentForm
                 displayTable={displayDetails}
                 title={null}
                 valueName={tourCtx.currentTournament.name}
