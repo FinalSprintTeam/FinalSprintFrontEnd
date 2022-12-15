@@ -43,11 +43,12 @@ const Tournament = ({}) => {
 
   const tournamentItems = (
     <div className={styles["tournament-items"]}>
-      {tournamentData.map((tournament) => (
+      {tournamentData.map((tournament, i) => (
         <TournamentItem
           id={tournament.id}
           name={tournament.name}
           onSelection={onSelection}
+          key={i}
         />
       ))}
     </div>

@@ -63,7 +63,7 @@ const MemberDetails = () => {
       {memberCtx.currentMember && (
         <div>
           <Header
-            title='Update Details'
+            title='Member Details'
             button={buttonGroup}
             url='https://source.unsplash.com/WHf1wtNMMLU/1920x1340'
           ></Header>
@@ -84,16 +84,8 @@ const MemberDetails = () => {
               <MemberForm
                 displayTable={displayDetails}
                 title={null}
-                valueFirstName={memberCtx.currentMember.firstName}
-                valueLastName={memberCtx.currentMember.lastName}
-                valueEmail={memberCtx.currentMember.email}
-                valueJoinDate={memberCtx.currentMember.joinDate}
-                valueStrAddr={memberCtx.currentMember.address.streetAddress}
-                valueCity={memberCtx.currentMember.address.city}
-                valueCountry={memberCtx.currentMember.address.country}
-                valuePostalCode={memberCtx.currentMember.address.postalCode}
-                valueProvince={memberCtx.currentMember.address.province}
                 editCheck={true}
+                setShowUpdateMember={setShowUpdateMember}
               />
             )}
           </BackGround>

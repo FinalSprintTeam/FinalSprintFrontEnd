@@ -5,31 +5,40 @@ import MemberContext from '../Context/member-context';
 import InputState from '../../UI/InputState';
 
 const MemberForm = (props) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [joinDate, setJoinDate] = useState('');
-
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [province, setProvince] = useState('');
-  const [postal, setPostal] = useState('');
-  const [country, setCountry] = useState('');
-
-  const [membership, setMembership] = useState('');
-
   const memberCtx = useContext(MemberContext);
 
-  const firstNameValue = props.valueFirstName || '';
-  const LastNameValue = props.valueLastName || '';
-  const emailValue = props.valueEmail || '';
-  const joinDateValue = props.valueJoinDate || '';
+  const [firstName, setFirstName] = useState(
+    props.editCheck ? memberCtx.currentMember.firstName : ''
+  );
+  const [lastName, setLastName] = useState(
+    props.editCheck ? memberCtx.currentMember.lastName : ''
+  );
+  const [email, setEmail] = useState(
+    props.editCheck ? memberCtx.currentMember.email : ''
+  );
+  const [joinDate, setJoinDate] = useState(
+    props.editCheck ? memberCtx.currentMember.joinDate : ''
+  );
 
-  const strAddrValue = props.valueStrAddr || '';
-  const cityValue = props.valueCity || '';
-  const provinceValue = props.valueProvince || '';
-  const postalValue = props.valuePostalCode || '';
-  const countryValue = props.valueCountry || '';
+  const [address, setAddress] = useState(
+    props.editCheck ? memberCtx.currentMember.address.streetAddress : ''
+  );
+  const [city, setCity] = useState(
+    props.editCheck ? memberCtx.currentMember.address.city : ''
+  );
+  const [province, setProvince] = useState(
+    props.editCheck ? memberCtx.currentMember.address.province : ''
+  );
+  const [postal, setPostal] = useState(
+    props.editCheck ? memberCtx.currentMember.address.postalCode : ''
+  );
+  const [country, setCountry] = useState(
+    props.editCheck ? memberCtx.currentMember.address.country : ''
+  );
+
+  const [membership, setMembership] = useState(
+    props.editCheck ? memberCtx.currentMember.membership.name : ''
+  );
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -66,11 +75,10 @@ const MemberForm = (props) => {
       country: country,
     };
 
-    memberCtx.postMember(memberObj, addressObj, membership);
-
-    props.editCheck
-      ? memberCtx.updateMember(memberObj, addressObj, membership)
-      : memberCtx.postMember(memberObj, addressObj, membership);
+    if (props.editCheck) {
+      memberCtx.updateMember(memberObj, addressObj, membership);
+      props.setShowUpdateMember(false);
+    } else memberCtx.postMember(memberObj, addressObj, membership);
   };
 
   return (
@@ -89,7 +97,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'First Name',
-                defaultValue: `${firstNameValue}`,
+                defaultValue: `${firstName}`,
               }}
               onChange={setFirstName}
             />
@@ -104,7 +112,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'Last Name',
-                defaultValue: `${LastNameValue}`,
+                defaultValue: `${lastName}`,
               }}
               onChange={setLastName}
             />
@@ -119,7 +127,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'Email',
-                defaultValue: `${emailValue}`,
+                defaultValue: `${email}`,
               }}
               onChange={setEmail}
             />
@@ -131,7 +139,7 @@ const MemberForm = (props) => {
               input={{
                 id: 'joinDate',
                 type: 'date',
-                defaultValue: `${joinDateValue}`,
+                defaultValue: `${joinDate}`,
               }}
               onChange={setJoinDate}
             />
@@ -150,7 +158,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'Street Address',
-                defaultValue: `${strAddrValue}`,
+                defaultValue: `${address}`,
               }}
               onChange={setAddress}
             />
@@ -165,7 +173,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'City',
-                defaultValue: `${cityValue}`,
+                defaultValue: `${city}`,
               }}
               onChange={setCity}
             />
@@ -178,7 +186,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'Province',
-                defaultValue: `${provinceValue}`,
+                defaultValue: `${province}`,
               }}
               onChange={setProvince}
             />
@@ -191,7 +199,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '7',
                 placeholder: 'Postal',
-                defaultValue: `${postalValue}`,
+                defaultValue: `${postal}`,
               }}
               onChange={setPostal}
             />
@@ -206,7 +214,7 @@ const MemberForm = (props) => {
                 min: '1',
                 max: '255',
                 placeholder: 'Country',
-                defaultValue: `${countryValue}`,
+                defaultValue: `${country}`,
               }}
               onChange={setCountry}
             />
@@ -226,6 +234,7 @@ const MemberForm = (props) => {
               name='memType'
               value='Normal'
               onChange={(e) => setMembership(e.target.value)}
+              defaultChecked
             />
           </div>
           <div>
