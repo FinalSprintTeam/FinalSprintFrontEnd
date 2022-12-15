@@ -1,9 +1,13 @@
-import React from "react";
-import classes from "./MemberItem.module.css";
+import React from 'react';
+import classes from './MemberItem.module.css';
 
-const MemberItem = ({ id, name }) => {
+const MemberItem = ({ id, name, onSelection }) => {
   return (
-    <div key={id} className={classes["member-item"]}>
+    <div
+      onClick={() => onSelection(id)}
+      key={id}
+      className={classes['member-item']}
+    >
       <h2>{name}</h2>
     </div>
   );
