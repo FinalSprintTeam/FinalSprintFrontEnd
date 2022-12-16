@@ -11,6 +11,26 @@ color: red;
 cursor: pointer;
 }
 
+.button{ 
+        cursor: pointer;
+        font: inherit;
+        border: none;
+        background-color: #0008;
+        color: white;
+        align-items: center;
+        border-radius: 25px;
+        font-weight: bold; 
+         
+      }
+      .button:hover,
+      .button:active {
+        background-color: #00008B;
+      }    
+
+      .button:disabled{
+        color: gray;
+        background: black;
+      }
 
 
 @media screen and (min-width: 768px) {

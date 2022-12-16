@@ -49,9 +49,7 @@ const TournamentMemberDetails = ({ styles }) => {
       );
   };
 
-  const scoreCheck = (score) => {
-    return score ? score : "N/A";
-  };
+
 
   const memberRow = (
     <tbody>
@@ -62,7 +60,7 @@ const TournamentMemberDetails = ({ styles }) => {
           foundMember && (
             <tr key={foundMember[0].id}>
               <td>{`${foundMember[0].firstName} ${foundMember[0].lastName}`}</td>
-              <td>{scoreCheck(m.score)}</td>
+              <td>{m.score}</td>
               <td>
                 <span
                   onClick={() => onDelete(foundMember[0].id)}
@@ -110,8 +108,8 @@ const TournamentMemberDetails = ({ styles }) => {
             />
           </td>
           <td>
-            <button onClick={handleSubmit}>
-              <IoIosAddCircle />
+            <button className={styles.button} onClick={handleSubmit}>
+              Save
             </button>{" "}
           </td>
         </tr>
@@ -119,9 +117,18 @@ const TournamentMemberDetails = ({ styles }) => {
       <tr>
         <td>Click to Add another Member</td>{" "}
         <td>
-          <button onClick={onAddMemberClick} disabled={showAddMembers}>
-            +
-          </button>
+           {showAddMembers && 
+           <button className={styles.button} onClick={onAddMemberClick} disabled>
+           Save Before Adding New Member
+         </button> 
+           } 
+
+            {!showAddMembers && 
+           <button className={styles.button} onClick={onAddMemberClick} disabled={showAddMembers}>
+           +
+         </button> 
+           }
+          
         </td>{" "}
         <td></td>
       </tr>
