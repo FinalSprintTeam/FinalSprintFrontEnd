@@ -49,6 +49,7 @@ export const MemberContextProvider = (props) => {
   const deleteMemberHandler = (id) => {
     deleteMember(id);
     setMembers(members.filter((member) => member.id !== id));
+    setCurrentId(false);
   };
 
   const contextValue = {
