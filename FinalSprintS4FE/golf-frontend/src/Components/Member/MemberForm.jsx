@@ -78,7 +78,10 @@ const MemberForm = (props) => {
     if (props.editCheck) {
       memberCtx.updateMember(memberObj, addressObj, membership);
       props.setShowUpdateMember(false);
-    } else memberCtx.postMember(memberObj, addressObj, membership);
+    } else {
+      memberCtx.postMember(memberObj, addressObj, membership);
+      window.location.reload(false);
+    }
   };
 
   return (
