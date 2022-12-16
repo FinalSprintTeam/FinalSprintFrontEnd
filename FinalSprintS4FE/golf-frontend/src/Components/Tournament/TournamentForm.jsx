@@ -3,8 +3,13 @@ import React, { useRef, useState, Fragment, useContext } from "react";
 import Input from "../../UI/Input";
 import TournamentContext from "../Context/tournament-context";
 import { infoToast, successToast } from "../../utils/hooks/useToast";
+import useInput from "../../hooks/use-input";
+
+const isNotEmpty = (value) => value.trim() !=='';
+
 
 const TournamentForm = (props) => {
+
   const entryFeeInput = useRef();
   const nameInput = useRef();
   const startDateInput = useRef();
