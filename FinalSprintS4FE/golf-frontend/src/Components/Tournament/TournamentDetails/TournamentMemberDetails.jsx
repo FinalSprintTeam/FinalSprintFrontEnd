@@ -5,8 +5,7 @@ import Card from "../../../UI/Card";
 import MemberContext from "../../Context/member-context";
 import Form from "react-bootstrap/Form";
 import InputState from "../../../UI/InputState";
-import { MdOutlineDelete } from "react-icons/md";
-import { IoIosAddCircle } from "react-icons/io";
+import { errorToast, successToast } from "../../../utils/hooks/useToast";
 
 const TournamentMemberDetails = ({ styles }) => {
   const tourCtx = useContext(TournamentContext);
@@ -18,6 +17,7 @@ const TournamentMemberDetails = ({ styles }) => {
 
   const onDelete = (id) => {
     tourCtx.removeMemberFromTournament(id, tourCtx.currentTournament.id);
+    errorToast("Member removed from tournament!");
   };
 
   const filterByReference = (arr1, arr2) => {
@@ -47,9 +47,8 @@ const TournamentMemberDetails = ({ styles }) => {
         tourCtx.currentTournament.id,
         score
       );
+    successToast("Member added to tournament!");
   };
-
-
 
   const memberRow = (
     <tbody>
@@ -117,18 +116,25 @@ const TournamentMemberDetails = ({ styles }) => {
       <tr>
         <td>Click to Add another Member</td>{" "}
         <td>
-           {showAddMembers && 
-           <button className={styles.button} onClick={onAddMemberClick} disabled>
-           Save Before Adding New Member
-         </button> 
-           } 
+          {showAddMembers && (
+            <button
+              className={styles.button}
+              onClick={onAddMemberClick}
+              disabled
+            >
+              Save Before Adding New Member
+            </button>
+          )}
 
-            {!showAddMembers && 
-           <button className={styles.button} onClick={onAddMemberClick} disabled={showAddMembers}>
-           +
-         </button> 
-           }
-          
+          {!showAddMembers && (
+            <button
+              className={styles.button}
+              onClick={onAddMemberClick}
+              disabled={showAddMembers}
+            >
+              +
+            </button>
+          )}
         </td>{" "}
         <td></td>
       </tr>

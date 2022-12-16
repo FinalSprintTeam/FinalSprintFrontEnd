@@ -1,17 +1,15 @@
 import React, { useContext, useState } from "react";
 import MemberContext from "../../Context/member-context";
-import classes from "./MemberDetails.module.css";
 import Header from "../../Layout/Header";
 import btnCss from "../../../UI/Button.module.css";
 import { MdUpdate, MdDelete, MdPeople } from "react-icons/md";
-import { FaListAlt } from "react-icons/fa";
 import Button from "../../../UI/Button";
-import Block from "../../../UI/Block";
 import MemberDetailsBody from "./MemberDetailsBody";
 import MemberForm from "../MemberForm";
 import { useNavigate } from "react-router-dom";
 import BackGround from "../../../UI/Background";
 import TournamentContext from "../../Context/tournament-context";
+import { infoToast } from "../../../utils/hooks/useToast";
 
 const MemberDetails = () => {
   // Member's store
@@ -42,6 +40,7 @@ const MemberDetails = () => {
     setTimeout(() => tourCtx.getTournament(), 500);
 
     // ADD validations - Y/N
+    infoToast("Member Deleted");
 
     goToMemberList();
   };
