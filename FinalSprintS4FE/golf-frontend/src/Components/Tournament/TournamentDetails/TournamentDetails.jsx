@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import TournamentMemberDetails from "./TournamentMemberDetails";
 import BackGround from "../../../UI/Background";
 import AddMemberToTournament from "./AddMemberToTournament";
-
+import { errorToast } from "../../../utils/hooks/useToast";
 
 const TournamentDetails = () => {
   // tournament store
@@ -45,6 +45,7 @@ const TournamentDetails = () => {
 
   const onDeleteTournament = () => {
     tourCtx.deleteTournament(tourCtx.currentTournament.id);
+    errorToast("Tournament Deleted");
     // ADD A VALIDATION HERE - PROMPT "ARE YOU SURE?"
 
     goToTournamentList();
