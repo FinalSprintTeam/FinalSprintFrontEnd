@@ -3,6 +3,11 @@ import React, { useRef, useState, Fragment, useContext } from "react";
 import Input from "../../UI/Input";
 import MemberContext from "../Context/member-context";
 import InputState from "../../UI/InputState";
+import {
+  errorToast,
+  infoToast,
+  successToast,
+} from "../../utils/hooks/useToast";
 
 const MemberForm = (props) => {
   const memberCtx = useContext(MemberContext);
@@ -42,21 +47,22 @@ const MemberForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.displayTable();
 
     // VALIDATIONS WILL GO HERE - IMPORTANT //
     if (
-      firstName ||
-      lastName ||
-      email ||
-      joinDate ||
-      address ||
-      city ||
-      province ||
-      postal ||
-      country ||
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      joinDate === "" ||
+      address === "" ||
+      city === "" ||
+      province === "" ||
+      postal === "" ||
+      country === "" ||
       membership === ""
     ) {
+      errorToast("No fields can be blank! Try again.");
+      return;
     }
     // End of validations
 
@@ -78,10 +84,13 @@ const MemberForm = (props) => {
 
     if (props.editCheck) {
       memberCtx.updateMember(memberObj, addressObj, membership);
+      infoToast("Member Updated!");
       props.setShowUpdateMember(false);
     } else {
       memberCtx.postMember(memberObj, addressObj, membership);
+      successToast("Member account Added!");
     }
+    props.displayTable();
   };
 
   return (
@@ -236,6 +245,7 @@ const MemberForm = (props) => {
               type="radio"
               name="memType"
               value="Normal"
+              defaultChecked={membership === "Normal" && true}
               onChange={(e) => setMembership(e.target.value)}
             />
           </div>
@@ -245,6 +255,7 @@ const MemberForm = (props) => {
               type="radio"
               name="memType"
               value="Premium"
+              defaultChecked={membership === "Premium" && true}
               onChange={(e) => setMembership(e.target.value)}
             />
           </div>
@@ -254,6 +265,7 @@ const MemberForm = (props) => {
               type="radio"
               name="memType"
               value="Trial"
+              defaultChecked={membership === "Trial" && true}
               onChange={(e) => setMembership(e.target.value)}
             />
           </div>
