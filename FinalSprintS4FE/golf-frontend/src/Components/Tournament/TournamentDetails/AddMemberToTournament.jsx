@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import Button from "../../../UI/Button";
-import Select from "../../../UI/Select";
 import btnCss from "../../../UI/Button.module.css";
-import { MdPeople } from "react-icons/md";
+import { MdPeople, MdSaveAlt } from "react-icons/md";
 import Card from "../../../UI/Card";
 import MemberContext from "../../Context/member-context";
 import TournamentContext from "../../Context/tournament-context";
+import classes from "./AddMemberToTournament.module.css"
+
 
 const AddMemberToTournament = () => {
   const memCtx = useContext(MemberContext);
@@ -26,44 +27,32 @@ const AddMemberToTournament = () => {
     tourCtx.currentTournament.members
   );
   const iconPeople = <MdPeople />;
+  const iconSave = <MdSaveAlt/>;
 
   const [membersToAdd, setMembersToAdd] = useState([]);
-  const [memberArray, setMemberArray] = useState([
-    <Select
-      setMembersToAdd={setMembersToAdd}
-      membersToAdd={membersToAdd}
-      members={members}
-    />,
-  ]);
 
-  const onAddMemberClick = () => {
-    setMemberArray([
-      ...memberArray,
-      <Select
-        setMembersToAdd={setMembersToAdd}
-        membersToAdd={membersToAdd}
-        members={members}
-      />,
-    ]);
-  };
 
   const submitMembers = (e) => {
     e.preventDefault();
+  
   };
 
   return (
-    <Card>
-      <div>
-        <Button
-          label="Add Another Member"
-          style={btnCss}
-          icon={iconPeople}
-          handleClick={onAddMemberClick}
-        />
-        <form onSubmit={submitMembers}>{memberArray}</form>
+   
+      <div className={classes["form-container"]}>
+
+        <form  className={classes.form}  onSubmit={submitMembers}>
+        </form>
       </div>
-    </Card>
   );
 };
 
 export default AddMemberToTournament;
+
+
+
+
+
+
+
+

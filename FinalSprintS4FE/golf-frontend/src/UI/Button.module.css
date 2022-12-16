@@ -11,6 +11,10 @@
     border-radius: 25px;
     font-weight: bold;
      margin: 0.75rem;
+     max-width: 10rem;
+     min-height: 4rem;
+     max-height: 4rem;
+     
   }
   
   .button:hover,
