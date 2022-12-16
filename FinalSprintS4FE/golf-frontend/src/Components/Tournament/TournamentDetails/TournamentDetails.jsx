@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import TournamentMemberDetails from "./TournamentMemberDetails";
 import BackGround from "../../../UI/Background";
 import AddMemberToTournament from "./AddMemberToTournament";
-import Select from "../../../UI/Select";
+
 
 const TournamentDetails = () => {
   // tournament store
