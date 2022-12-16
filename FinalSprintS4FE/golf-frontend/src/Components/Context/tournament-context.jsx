@@ -4,6 +4,7 @@ import { putTournament } from "../../api/services/tournament/putTournament";
 import { deleteTournament } from "../../api/services/tournament/deleteTournament";
 import { getData } from "../../api/services/getData";
 import { useMemo } from "react";
+import { addMemberToTournament } from "../../api/services/tournament/addMemberToTournament";
 
 const TournamentContext = React.createContext({
   getTournament: (api) => {},
@@ -13,6 +14,7 @@ const TournamentContext = React.createContext({
   tournaments: [],
   currentTournament: () => {},
   setCurrentId: (id) => {},
+  addMemberToTournament: (memberId, tournamentId, score) => {}
 });
 
 export const TournamentContextProvider = (props) => {
@@ -55,6 +57,14 @@ export const TournamentContextProvider = (props) => {
     setTournaments(tournaments.filter((tournament) => tournament.id !== id));
   };
 
+  const addMemberToTournamentHandler = async (memberId, tournamentId, score) =>{
+    const data = await addMemberToTournament(memberId, tournamentId, score);
+    setTournaments(tournaments.map((tourney) =>
+    tourney.id === data.id ? data : tourney 
+    ))
+    setCurrentId(data.id);
+  }
+
   const contextValue = {
     getTournament: getTournamentHandler,
     postTournament: postTournamentHandler,
@@ -63,6 +73,7 @@ export const TournamentContextProvider = (props) => {
     tournaments: tournaments,
     currentTournament: currentTournament,
     setCurrentId: setCurrentId,
+    addMemberToTournament : addMemberToTournamentHandler
   };
 
   return (
