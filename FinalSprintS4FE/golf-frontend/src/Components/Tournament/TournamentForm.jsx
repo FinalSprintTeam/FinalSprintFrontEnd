@@ -2,8 +2,14 @@ import classes from "./TournamentForm.module.css";
 import React, { useRef, useState, Fragment, useContext } from "react";
 import Input from "../../UI/Input";
 import TournamentContext from "../Context/tournament-context";
+import { infoToast, successToast } from "../../utils/hooks/useToast";
+import useInput from "../../hooks/use-input";
+
+const isNotEmpty = (value) => value.trim() !=='';
+
 
 const TournamentForm = (props) => {
+
   const entryFeeInput = useRef();
   const nameInput = useRef();
   const startDateInput = useRef();
@@ -28,9 +34,13 @@ const TournamentForm = (props) => {
       entryFee: entryFeeInput.current.value,
     };
 
-    props.editCheck
-      ? tourCtx.updateTournament(tournamentObj)
-      : tourCtx.postTournament(tournamentObj);
+    if (props.editCheck) {
+      tourCtx.updateTournament(tournamentObj);
+      infoToast("Tournament Updated");
+    } else {
+      tourCtx.postTournament(tournamentObj);
+      successToast("Tournament Added");
+    }
   };
 
   return (

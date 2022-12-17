@@ -14,6 +14,7 @@ import { useContext } from "react";
 import TournamentContext from "../Context/tournament-context";
 import { useNavigate } from "react-router-dom";
 import BackGround from "../../UI/Background";
+import AddTournamentForm from "./AddTournamentForm";
 
 const Tournament = ({}) => {
   const [showTable, setShowTable] = useState(true);
@@ -93,7 +94,14 @@ const Tournament = ({}) => {
             valueEntryFee=""
             editCheck={false}
           />
+          
         )}
+        {showForum && (
+           <AddTournamentForm 
+           displayTable={onViewTournamentClick}
+           editCheck={false}/>
+        )}
+      
       </BackGround>
       {/* </Block> */}
     </Fragment>
