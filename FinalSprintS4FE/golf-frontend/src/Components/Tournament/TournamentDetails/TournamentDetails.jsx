@@ -58,7 +58,7 @@ const TournamentDetails = () => {
   };
 
   const buttonGroup = (
-    <div className={btnCss.btnContainer}>
+    <div className={btnCss.btnContainerDetails}>
       <Button
         label="Update Tournament"
         style={btnCss}

@@ -33,14 +33,21 @@
     justify-content: center;
   }
 
+  .btnContainerDetails{
+    display: flex;
+  }
+
 
   @media screen and (max-width: 768px) {
     .btnContainer {
-      flex-direction: column;
       align-items: center;
 
     }
 
+    .btnContainerDetails{
+    flex-wrap: wrap;
+    }
+   
     .icon{
         margin-right: 0;
     }
