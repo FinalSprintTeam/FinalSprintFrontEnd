@@ -1,22 +1,22 @@
-import useInput from '../../hooks/use-input';
-import classes from './AddTournamentForm.module.css'
+import useInput from "../../hooks/use-input";
+import classes from "./AddTournamentForm.module.css";
 import { infoToast, successToast } from "../../utils/hooks/useToast";
-import TournamentContext from '../Context/tournament-context';
+import TournamentContext from "../Context/tournament-context";
 import React, { useContext } from "react";
 
-const isNotEmpty = (value) => value.trim() !== '';
-const isEmail = (value) => value.includes('@');
-const isValidNumber = (value) => value.trim() >=0;
+const isNotEmpty = (value) => value.trim() !== "";
+const isEmail = (value) => value.includes("@");
+const isValidNumber = (value) => value.trim() >= 0;
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1;
+var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
-today = `${yyyy}-${mm}-${dd}`
-const isValidDate =(value) => value >= today;
+today = `${yyyy}-${mm}-${dd}`;
+const isValidDate = (value) => value >= today;
 // const isValidEndDate = (value) => value >= startDateValue
 
 const AddTournamentForm = (props) => {
-    const tourCtx = useContext(TournamentContext);
+  const tourCtx = useContext(TournamentContext);
   const {
     value: NameValue,
     isValid: NameIsValid,
@@ -51,7 +51,6 @@ const AddTournamentForm = (props) => {
     reset: resetLocation,
   } = useInput(isNotEmpty);
 
-
   const {
     value: entryFeeValue,
     isValid: entryFeeValid,
@@ -63,12 +62,17 @@ const AddTournamentForm = (props) => {
 
   let formIsValid = false;
 
-  if (NameIsValid && startDateIsValid && locationValid && endDateIsValid && entryFeeValid) {
+  if (
+    NameIsValid &&
+    startDateIsValid &&
+    locationValid &&
+    endDateIsValid &&
+    entryFeeValid
+  ) {
     formIsValid = true;
   }
- 
 
-  const submitHandler = event => {
+  const submitHandler = (event) => {
     event.preventDefault();
 
     if (!formIsValid) {
@@ -84,16 +88,17 @@ const AddTournamentForm = (props) => {
       entryFee: entryFeeValue,
     };
 
-    if (props.editCheck) {
-      tourCtx.updateTournament(tournamentObj);
-      infoToast("Tournament Updated");
-    } else {
-      tourCtx.postTournament(tournamentObj);
+    tourCtx.postTournament(tournamentObj);
       successToast("Tournament Added");
-    }
 
-    console.log('Submitted!');
-    console.log(NameValue, startDateValue, endDateValue, locationValue, entryFeeValue);
+    console.log("Submitted!");
+    console.log(
+      NameValue,
+      startDateValue,
+      endDateValue,
+      locationValue,
+      entryFeeValue
+    );
 
     resetName();
     resetStartDate();
@@ -102,81 +107,116 @@ const AddTournamentForm = (props) => {
     resetEntryFee();
   };
 
-  const NameClasses = NameHasError ? `${classes["form-control"]} ${classes.invalid}` : classes["form-control"];
-  const startDateClasses = startDateHasError ? `${classes["form-control"]} ${classes.invalid}` : classes["form-control"];
-  const endDateClasses = endDateHasError ? `${classes["form-control"]} ${classes.invalid}` : classes["form-control"];
-  const locationClasses = NameHasError ? `${classes["form-control"]} ${classes.invalid}` : classes["form-control"];
-  const entryFeeClasses = entryFeeHasError ? `${classes["form-control"]} ${classes.invalid}` : classes["form-control"];
+  const NameClasses = NameHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+  const startDateClasses = startDateHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+  const endDateClasses = endDateHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+  const locationClasses = NameHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+  const entryFeeClasses = entryFeeHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
+      <h2 className={classes.title}>Add Tournament</h2>
       <div className={classes["control-group"]}>
-        <div className={NameClasses}>
-          <label htmlFor='name'>Tournament Name</label>
+        <div className={`${NameClasses} form-group col-md-8 offset-md-2`}>
+          <label htmlFor="name">Tournament Name</label>
           <input
-            type='text'
-            id='name'
+            type="text"
+            id="name"
             value={NameValue}
             onChange={NameChangeHandler}
             onBlur={NameBlurHandler}
-            placeholder ="Tournament"
+            placeholder="Tournament"
+            className="form-control"
           />
-          {NameHasError && <p className= {classes["error-text"]}>Please enter a Tournament name.</p>}
+          {NameHasError && (
+            <p className={classes["error-text"]}>
+              Please enter a Tournament name.
+            </p>
+          )}
         </div>
-        <div className={startDateClasses}>
-          <label htmlFor='startdate'>Start Date</label>
+        <div className={`${startDateClasses} form-group col-md-8 offset-md-2`}>
+          <label htmlFor="startdate">Start Date</label>
           <input
-            type='date'
-            id='startdate'
+            type="date"
+            id="startdate"
             value={startDateValue}
             onChange={startDateChangeHandler}
             onBlur={startDateBlurHandler}
+            className="form-control"
           />
-          {startDateHasError && <p className={classes["error-text"]}>Please enter a tournament start date.</p>}
+          {startDateHasError && (
+            <p className={classes["error-text"]}>
+              Please enter a tournament start date.
+            </p>
+          )}
         </div>
 
-        <div className={endDateClasses}>
-          <label htmlFor='enddate'>End Date</label>
+        <div className={`${endDateClasses} form-group col-md-8 offset-md-2`}>
+          <label htmlFor="enddate">End Date</label>
           <input
-            type='date'
-            id='enddate'
+            type="date"
+            id="enddate"
             value={endDateValue}
             onChange={endDateChangeHandler}
             onBlur={endDateBlurHandler}
+            className="form-control"
           />
-          {endDateHasError && <p className={classes["error-text"]}>Please enter a tournament end date.</p>}
+          {endDateHasError && (
+            <p className={classes["error-text"]}>
+              Please enter a tournament end date.
+            </p>
+          )}
         </div>
       </div>
-      <div className={locationClasses}>
-        <label htmlFor='location'>Location</label>
+      <div className={`${locationClasses} form-group col-md-8 offset-md-2`}>
+        <label htmlFor="location">Location</label>
         <input
-          type='text'
-          id='location'
+          type="text"
+          id="location"
           value={locationValue}
           onChange={locationChangeHandler}
           onBlur={locationBlurHandler}
-          placeholder ="Location"
+          placeholder="Location"
+          className="form-control"
         />
-        {locationHasError && <p className={classes["error-text"]}>Please enter a tournament location.</p>}
+        {locationHasError && (
+          <p className={classes["error-text"]}>
+            Please enter a tournament location.
+          </p>
+        )}
       </div>
 
-
-      <div className={entryFeeClasses}>
-        <label htmlFor='entryfee'>Entry Fee</label>
+      <div className={`${entryFeeClasses} form-group col-md-8 offset-md-2`}>
+        <label htmlFor="entryfee">Entry Fee</label>
         <input
           FormControl="form-group col-md-8 offset-md-2"
-          type='number'
-          id='entryfee'
+          type="number"
+          id="entryfee"
           value={entryFeeValue}
           onChange={entryFeeChangeHandler}
           onBlur={entryFeeBlurHandler}
-          step = "1"
-          placeholder='Entry Fee'
+          step="1"
+          placeholder="Entry Fee"
+          className="form-control"
         />
-        {entryFeeHasError && <p className={classes["error-text"]}>Please enter a Entry Fee.</p>}
+        {entryFeeHasError && (
+          <p className={classes["error-text"]}>Please enter a Entry Fee.</p>
+        )}
       </div>
-      <div className= {classes["form-actions "]}>
-        <button className={classes.button}  disabled={!formIsValid}>Submit</button>
+      <div className={classes["form-actions "]}>
+        <button className={classes.button} disabled={!formIsValid}>
+          Submit
+        </button>
       </div>
     </form>
   );

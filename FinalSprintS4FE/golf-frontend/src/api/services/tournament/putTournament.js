@@ -6,8 +6,8 @@ const putTournament = async (api, tournament) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(tournament),
   });
-  //   const data = res.json();
-  //   return data;
+  // const data = res.json();
+  // return data;
 };
 
 export { putTournament };

@@ -42,7 +42,12 @@ export const TournamentContextProvider = (props) => {
   };
 
   const updateTournament = async (tournament) => {
-    var tournamentToUpdate = { ...tournament, id: currentTournament.id };
+    var tournamentToUpdate = {
+      ...tournament,
+      id: currentTournament.id,
+      members: currentTournament.members,
+    };
+
     putTournament(
       `/api/tournament/${tournamentToUpdate.id}/edit`,
       tournamentToUpdate

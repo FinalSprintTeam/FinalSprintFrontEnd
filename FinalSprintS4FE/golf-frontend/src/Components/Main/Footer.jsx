@@ -9,32 +9,32 @@ const Footer = () => {
           aria-current="true"
         >
           {/* Store Hours */}
-          <h5 className="mb-1">Copyright &copy; for Squishy Kitty Tech</h5>
+          <h5 className="mb-1">Copyright &copy; for Happy Gilmore Fairway</h5>
         </span>
         {/* Follow Us */}
         <span className="list-group-item list-group-item-action active">
           <h5 className="mb-1">Follow Us</h5>
           <p className="mb-1">
             {" "}
-            <a href="#">Twitter</a>
+            <a href="#">Twitter @happygilmorefairway</a>
           </p>
           <p className="mb-1">
             {" "}
-            <a href="#">Facebook</a>
+            <a href="#">Facebook @happygilmorefairway</a>
           </p>
           <p className="mb-1">
             {" "}
-            <a href="#">Instagram</a>
+            <a href="#">Instagram @happyputts</a>
           </p>
         </span>
 
         {/* Contact Us */}
         <span className="list-group-item list-group-item-action active">
           <h5 className="mb-1">Contact Us</h5>
-          <p className="mb-1">Toll Free: 1-800-555-SquihyKitty</p>
+          <p className="mb-1">Toll Free: 1-800-555-GETINTHEHOLE</p>
           <p className="mb-1">
-            <a href="mailto:pawreviews@email.com" target="_blank">
-              Email: SquishyKittyTech@email.com
+            <a href="mailto:happygilmore@email.com" target="_blank">
+              Email: happygilmore@email.com
             </a>
           </p>
         </span>
