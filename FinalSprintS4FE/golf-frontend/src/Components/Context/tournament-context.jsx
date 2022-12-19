@@ -42,18 +42,23 @@ export const TournamentContextProvider = (props) => {
   };
 
   const updateTournament = async (tournament) => {
-    var tournamentToUpdate = { ...tournament, id: currentTournament.id };
-    const updatedTourney = await putTournament(
+    var tournamentToUpdate = {
+      ...tournament,
+      id: currentTournament.id,
+      members: currentTournament.members,
+    };
+
+    putTournament(
       `/api/tournament/${tournamentToUpdate.id}/edit`,
       tournamentToUpdate
     );
 
     setTournaments(
       tournaments.map((tourney) =>
-        tourney.id === updatedTourney.id ? updatedTourney : tourney
+        tourney.id === tournamentToUpdate.id ? tournamentToUpdate : tourney
       )
     );
-    setCurrentId(updatedTourney.id);
+    setCurrentId(tournamentToUpdate.id);
   };
 
   const deleteTournamentHandler = (id) => {
