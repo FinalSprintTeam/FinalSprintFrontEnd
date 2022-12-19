@@ -78,6 +78,10 @@ footer h5 {
   color: white;
 }
 
+footer p {
+  color: white;
+}
+
 nav h1 {
   z-index: 0;
   font-family: "Hanalei Fill", cursive;
