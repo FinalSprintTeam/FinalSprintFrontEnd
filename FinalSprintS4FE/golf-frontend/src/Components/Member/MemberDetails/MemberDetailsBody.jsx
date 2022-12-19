@@ -17,7 +17,7 @@ function MemberDetailsBody({
     <Fragment>
       <h1 className={classes.title}>{name}</h1>
 
-      <div className={classes.grid}>
+      <div className={classes.info}>
         <h2>
           {' '}
           <span className={`${classes.badge} ${classes['badge--primary']}`}>
