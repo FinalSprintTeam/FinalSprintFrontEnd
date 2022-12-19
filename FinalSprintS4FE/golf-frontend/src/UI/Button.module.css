@@ -61,4 +61,32 @@
   }
 
 
+
+  @media screen and (max-width: 425px) {
+    .btnContainer {
+      align-items: center;
+
+    }
+
+    .btnContainerDetails{
+    flex-wrap: wrap;
+    }
+   
+    .icon{
+        margin-right: 0;
+    }
+
+    .button{
+      margin: 0.25rem;
+      font-size: 0.75rem;
+      max-width: 6rem;
+      min-height: 3rem;
+      max-height: 4rem;
+    }
+    
+
+   
+  }
+
+
   
