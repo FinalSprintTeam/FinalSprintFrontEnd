@@ -5,11 +5,9 @@ import TournamentContext from "../Context/tournament-context";
 import { infoToast, successToast } from "../../utils/hooks/useToast";
 import useInput from "../../hooks/use-input";
 
-const isNotEmpty = (value) => value.trim() !=='';
-
+const isNotEmpty = (value) => value.trim() !== "";
 
 const TournamentForm = (props) => {
-
   const entryFeeInput = useRef();
   const nameInput = useRef();
   const startDateInput = useRef();
@@ -25,7 +23,7 @@ const TournamentForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.displayTable();
+
     const tournamentObj = {
       name: nameInput.current.value,
       startDate: startDateInput.current.value,
@@ -41,6 +39,7 @@ const TournamentForm = (props) => {
       tourCtx.postTournament(tournamentObj);
       successToast("Tournament Added");
     }
+    props.displayTable();
   };
 
   return (
