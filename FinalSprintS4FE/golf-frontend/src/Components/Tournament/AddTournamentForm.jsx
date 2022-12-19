@@ -88,13 +88,8 @@ const AddTournamentForm = (props) => {
       entryFee: entryFeeValue,
     };
 
-    if (props.editCheck) {
-      tourCtx.updateTournament(tournamentObj);
-      infoToast("Tournament Updated");
-    } else {
-      tourCtx.postTournament(tournamentObj);
+    tourCtx.postTournament(tournamentObj);
       successToast("Tournament Added");
-    }
 
     console.log("Submitted!");
     console.log(

@@ -31,14 +31,8 @@ const TournamentForm = (props) => {
       location: locationInput.current.value,
       entryFee: entryFeeInput.current.value,
     };
-
-    if (props.editCheck) {
-      tourCtx.updateTournament(tournamentObj);
-      infoToast("Tournament Updated");
-    } else {
-      tourCtx.postTournament(tournamentObj);
-      successToast("Tournament Added");
-    }
+    tourCtx.updateTournament(tournamentObj);
+    infoToast("Tournament Updated");
     props.displayTable();
   };
 
