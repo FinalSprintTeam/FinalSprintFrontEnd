@@ -18,7 +18,7 @@ import AddTournamentForm from "./AddTournamentForm";
 
 const Tournament = ({}) => {
   const [showTable, setShowTable] = useState(true);
-  const [showForum, setShowForum] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const tourCtx = useContext(TournamentContext);
   const tournamentData = tourCtx.tournaments;
   const iconAdd = <IoIosAddCircle />;
@@ -26,11 +26,11 @@ const Tournament = ({}) => {
 
   const onViewTournamentClick = () => {
     setShowTable(true);
-    setShowForum(false);
+    setShowForm(false);
   };
 
   const onAddTournamentClick = () => {
-    setShowForum(true);
+    setShowForm(true);
     setShowTable(false);
   };
 
@@ -82,26 +82,12 @@ const Tournament = ({}) => {
       />
       <BackGround>
         {showTable && tournamentItems}
-
-        {showForum && (
-          <TournamentForm
+        {showForm && (
+          <AddTournamentForm
             displayTable={onViewTournamentClick}
-            title="Add Tournament"
-            valueName=""
-            valueStartDate=""
-            valueEndDate=""
-            valueLocation=""
-            valueEntryFee=""
             editCheck={false}
           />
-          
         )}
-        {showForum && (
-           <AddTournamentForm 
-           displayTable={onViewTournamentClick}
-           editCheck={false}/>
-        )}
-      
       </BackGround>
       {/* </Block> */}
     </Fragment>
